@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Github, Linkedin, Instagram, Mail, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Instagram, Mail, ArrowUp } from "lucide-react";
 
 const HuggingFaceIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,22 +37,15 @@ export default function Footer() {
 
       <div className="relative max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo & Copyright */}
-          <div className="flex flex-col items-center md:items-start gap-2">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-2xl font-bold text-gradient"
-            >
-              Jeevarathinam V
-            </motion.div>
-            <p className="text-slate-500 text-sm flex items-center gap-1">
-              Made with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> using Next.js &
-              Three.js
-            </p>
-            <p className="text-slate-600 text-xs">© {currentYear} All rights reserved.</p>
-          </div>
+          {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl font-bold text-white"
+          >
+            Jeevarathinam V
+          </motion.div>
 
           {/* Social Links */}
           <motion.div
