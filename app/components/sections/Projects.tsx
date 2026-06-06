@@ -181,9 +181,9 @@ function ProjectCard({
               <Github className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
             </motion.a>
           )}
-          {"hfUrl" in project && project.hfUrl && (
+          {(project as {hfUrl?: string}).hfUrl && (
             <motion.a
-              href={project.hfUrl as string}
+              href={(project as {hfUrl?: string}).hfUrl}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
@@ -194,9 +194,9 @@ function ProjectCard({
               <HuggingFaceIcon className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
             </motion.a>
           )}
-          {"liveUrl" in project && project.liveUrl && (
+          {(project as {liveUrl?: string}).liveUrl && (
             <motion.a
-              href={project.liveUrl as string}
+              href={(project as {liveUrl?: string}).liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
