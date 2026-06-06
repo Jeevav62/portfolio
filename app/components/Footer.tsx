@@ -42,7 +42,7 @@ export default function Footer() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl font-bold text-white"
+            className="text-2xl font-bold text-gradient"
           >
             Jeevarathinam V
           </motion.div>
