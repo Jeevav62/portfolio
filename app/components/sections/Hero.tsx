@@ -23,7 +23,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full flex flex-col overflow-hidden"
+      className="relative h-screen w-full flex flex-col overflow-hidden"
     >
       {/* 3D Background */}
       <NeuralNetwork />
