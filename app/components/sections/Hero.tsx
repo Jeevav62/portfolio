@@ -51,16 +51,6 @@ export default function Hero() {
               <span className="text-gradient">V</span>
             </motion.h1>
 
-            {/* Role */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.6 }}
-              className="text-blue-400 text-lg font-medium tracking-widest uppercase mb-6"
-            >
-              AI / ML Engineer
-            </motion.p>
-
             {/* Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
