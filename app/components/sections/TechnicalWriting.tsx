@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
-import { ExternalLink, BookOpen, Clock, ArrowUpRight } from "lucide-react";
+import { BookOpen, Clock, ArrowUpRight } from "lucide-react";
 
 const articles = [
   {
@@ -158,24 +158,6 @@ export default function TechnicalWriting() {
           ))}
         </div>
 
-        {/* View All Link */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-12 text-center"
-        >
-          <a
-            href="https://www.f22labs.com/blogs/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors group"
-          >
-            <span>View all articles on F22 Labs Blog</span>
-            <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </a>
-        </motion.div>
       </div>
     </section>
   );

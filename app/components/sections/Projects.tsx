@@ -135,7 +135,7 @@ function ProjectCard({
       >
         {/* Background Gradient */}
         <div
-          className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+          className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`}
         />
 
         {/* Icon */}
@@ -211,7 +211,7 @@ function ProjectCard({
 
         {/* Corner Glow */}
         <div
-          className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${project.gradient} rounded-full blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
+          className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${project.gradient} rounded-full blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none`}
         />
       </div>
     </motion.div>

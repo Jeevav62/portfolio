@@ -48,8 +48,10 @@ const skillCategories = [
     skills: [
       { name: "TTS Fine-tuning", icon: Mic },
       { name: "STT Fine-tuning", icon: Mic },
+      { name: "Speech-to-Speech", icon: Zap },
       { name: "Phoneme Engineering (G2P/IPA)", icon: MessageSquare },
       { name: "LiveKit", icon: Zap },
+      { name: "Twilio", icon: Server },
     ],
   },
   {
@@ -241,7 +243,7 @@ export default function Skills() {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           {[
-            { value: "2+", label: "Years Experience" },
+            { value: "1+", label: "Years Experience" },
             { value: "10+", label: "Projects Completed" },
             { value: "4", label: "Internships" },
             { value: "5", label: "Technical Articles" },
