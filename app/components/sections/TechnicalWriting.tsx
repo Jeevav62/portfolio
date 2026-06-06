@@ -9,7 +9,7 @@ const articles = [
     id: "1",
     title: "Zvec vs Qdrant vs Milvus: Vector Database Comparison for RAG",
     excerpt:
-      "Benchmarked Zvec, Qdrant, and Milvus on RAG retrieval accuracy and latency across identical testing conditions — indexing speed, query latency, and retrieval consistency. Identified Zvec as the fastest with highest recall accuracy.",
+      "Benchmarked Zvec, Qdrant, and Milvus on RAG retrieval accuracy and latency across identical testing conditions: indexing speed, query latency, and retrieval consistency. Identified Zvec as the fastest with highest recall accuracy.",
     url: "https://www.f22labs.com/blogs/zvec-vs-qdrant-vs-milvus-vector-database-comparison-for-rag",
     date: "Apr 2026",
     readTime: "6 min read",
@@ -19,7 +19,7 @@ const articles = [
     id: "2",
     title: "What Is TOON and How Does It Reduce AI Token Costs?",
     excerpt:
-      "Deep dive into TOON (Token-Oriented Object Notation) — a data representation format designed to reduce token usage when sending structured data to AI models, cutting costs without sacrificing accuracy.",
+      "Deep dive into TOON (Token-Oriented Object Notation), a data representation format designed to reduce token usage when sending structured data to AI models, cutting costs without sacrificing accuracy.",
     url: "https://www.f22labs.com/blogs/what-is-toon-and-how-does-it-reduce-ai-token-costs",
     date: "Apr 2026",
     readTime: "7 min read",
@@ -27,7 +27,7 @@ const articles = [
   },
   {
     id: "3",
-    title: "Reflection Prompting — Why One Prompt Is Not Enough",
+    title: "Reflection Prompting: Why One Prompt Is Not Enough",
     excerpt:
       "Explore the power of reflection prompting techniques to improve LLM outputs through iterative refinement and self-correction mechanisms.",
     url: "https://www.f22labs.com/blogs/reflection-prompting-explained-why-one-prompt-is-not-enough/",
@@ -49,7 +49,7 @@ const articles = [
     id: "5",
     title: "I Merged Two AI Voice Models With Math And It Actually Worked",
     excerpt:
-      "Task Arithmetic research for TTS — combined fine-tuned female voice and Indian accent Kokoro models in shared weight space without any retraining, achieving MOS 4.4 and 55% listener preference vs 27% baseline.",
+      "Task Arithmetic research for TTS, combining fine-tuned female voice and Indian accent Kokoro models in shared weight space without any retraining. Achieved MOS 4.4 and 55% listener preference vs 27% baseline.",
     url: "#",
     date: "2026",
     readTime: "10 min read",

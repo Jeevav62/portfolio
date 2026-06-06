@@ -13,14 +13,14 @@ const hfModels = [
   {
     id: "xtts",
     name: "jeevav62/xtts-v2-indian-en",
-    desc: "XTTS-v2 fine-tuned on Indian-English — WER reduced 58.4% (18.54% → 7.71%), semantic similarity +12.1%",
+    desc: "XTTS-v2 fine-tuned on Indian-English. WER reduced 58.4% (18.54% to 7.71%), semantic similarity +12.1%",
     downloads: "79+",
     url: "https://huggingface.co/jeevav62/xtts-v2-indian-en",
   },
   {
     id: "kokoro",
     name: "jeevav62/kokoro-82m-indian-en",
-    desc: "Kokoro-82M fine-tuned on 4,358 Indian-English clips — Indian proper noun pronunciation 3.4/10 → 8.8/10",
+    desc: "Kokoro-82M fine-tuned on 4,358 Indian-English clips. Indian proper noun pronunciation improved from 3.4/10 to 8.8/10",
     downloads: "—",
     url: "https://huggingface.co/jeevav62/kokoro-82m-indian-en",
   },

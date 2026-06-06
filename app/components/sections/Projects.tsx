@@ -10,7 +10,7 @@ const projects = [
     id: "1",
     title: "TTS Fine-Tuning & Task Arithmetic Research",
     description:
-      "Pioneered Task Arithmetic for TTS — combined fine-tuned female voice + Indian accent Kokoro models in shared weight space at α=0.6, β=1.0 without retraining; achieved MOS 4.4 and 55% listener preference. Fine-tuned XTTS-v2 reducing WER by 58.4% (18.54% → 7.71%). Published 2 models on Hugging Face.",
+      "Pioneered Task Arithmetic for TTS, combining fine-tuned female voice and Indian accent Kokoro models in shared weight space at α=0.6, β=1.0 without retraining. Achieved MOS 4.4 and 55% listener preference. Fine-tuned XTTS-v2 reducing WER by 58.4% (18.54% to 7.71%). Published 2 models on Hugging Face.",
     technologies: ["Kokoro-82M", "XTTS-v2", "VoxCPM", "PyTorch", "PEFT", "LoRA", "DDP", "Hugging Face"],
     icon: Volume2,
     color: "purple",
@@ -31,7 +31,7 @@ const projects = [
   },
   {
     id: "3",
-    title: "LLM SEO — AI-Native Content Engine",
+    title: "LLM SEO: AI-Native Content Engine",
     description:
       "Multi-stage AI content engine that researches, verifies, and generates citation-optimized articles directly cited by ChatGPT, Claude, Gemini, and Perplexity. 5-stage pipeline: Question Discovery → Source Authority Mapping → Fact Verification → Hub & Spoke Knowledge Map → Article Generation. Includes hallucination prevention and resume-from-checkpoint for cost safety.",
     technologies: ["Python", "LLM APIs", "Web Scraping", "JWT Auth", "Cryptography", "Async Processing"],
@@ -42,9 +42,9 @@ const projects = [
   },
   {
     id: "4",
-    title: "Offline LLM on Android — Edge AI Inference",
+    title: "Offline LLM on Android: Edge AI Inference",
     description:
-      "On-device LLM inference system deploying LFM 2.5 1.2B on Android (Poco X3) via llama.cpp + CMake — fully offline with zero internet dependency. Proves edge AI viability: quantized LLM runs entirely on consumer mobile hardware with no cloud backend.",
+      "On-device LLM inference system deploying LFM 2.5 1.2B on Android (Poco X3) via llama.cpp and CMake, fully offline with zero internet dependency. Proves edge AI viability: quantized LLM runs entirely on consumer mobile hardware with no cloud backend.",
     technologies: ["Python", "llama.cpp", "CMake", "Android", "LFM 2.5 1.2B", "Edge AI"],
     icon: Cpu,
     color: "blue",
@@ -53,7 +53,7 @@ const projects = [
   },
   {
     id: "5",
-    title: "AI Hoax Buster — Chrome Extension",
+    title: "AI Hoax Buster: Chrome Extension",
     description:
       "Browser-integrated NLP Chrome extension for real-time bias and hoax detection with sub-800ms latency on news articles and web content. Engineered deterministic inference pipelines with chunked processing, label normalization, reproducible scoring, and manifest-compliant Chrome extension logic.",
     technologies: ["Python", "Django", "Hugging Face Transformers", "scikit-learn", "JavaScript", "Chrome APIs"],
@@ -66,7 +66,7 @@ const projects = [
     id: "6",
     title: "RAG Techniques",
     description:
-      "Comprehensive implementation of normal and advanced RAG methodologies — covering dense retrieval, hybrid search, reranking, GraphRAG, and production-grade optimization patterns for LLM-powered retrieval systems.",
+      "Comprehensive implementation of normal and advanced RAG methodologies, covering dense retrieval, hybrid search, reranking, GraphRAG, and production-grade optimization patterns for LLM-powered retrieval systems.",
     technologies: ["Python", "LangChain", "LlamaIndex", "Qdrant", "Neo4j", "RAG", "GraphRAG"],
     icon: Database,
     color: "purple",
