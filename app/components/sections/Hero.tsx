@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import dynamic from "next/dynamic";
 import Button from "../ui/Button";
 
@@ -39,28 +39,27 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"
-            >
-              <Sparkles className="w-4 h-4 text-blue-400" />
-              <span className="text-sm text-slate-300">AI / ML Engineer</span>
-            </motion.div>
-
             {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6"
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-3"
             >
               <span className="text-white">Jeevarathinam</span>
               <br />
               <span className="text-gradient">V</span>
             </motion.h1>
+
+            {/* Role */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.6 }}
+              className="text-blue-400 text-lg font-medium tracking-widest uppercase mb-6"
+            >
+              AI / ML Engineer
+            </motion.p>
 
             {/* Subtitle */}
             <motion.p
