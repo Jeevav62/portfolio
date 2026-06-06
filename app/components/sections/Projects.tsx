@@ -3,51 +3,87 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 import SectionHeading from "../ui/SectionHeading";
-import { ExternalLink, Github, Cpu, Volume2, Shield, Sparkles } from "lucide-react";
+import { ExternalLink, Github, Cpu, Volume2, Shield, Database, Globe, Search } from "lucide-react";
 
 const projects = [
   {
     id: "1",
-    title: "Local LLM Android App",
+    title: "TTS Fine-Tuning & Task Arithmetic Research",
     description:
-      "Running local LLMs directly on Android devices enabling private on-device AI inference. No cloud required, complete privacy for your conversations.",
-    technologies: ["LLM Inference", "Android", "Edge AI", "Kotlin"],
-    icon: Cpu,
-    color: "blue",
-    gradient: "from-blue-500 to-cyan-500",
-  },
-  {
-    id: "2",
-    title: "TTS Fine Tuning",
-    description:
-      "Fine-tuned speech synthesis models including VoxCPM and Kokoro TTS to improve pronunciation accuracy and natural speech quality for various languages.",
-    technologies: ["Python", "Deep Learning", "Speech AI", "Audio Processing"],
+      "Pioneered Task Arithmetic for TTS — combined fine-tuned female voice + Indian accent Kokoro models in shared weight space at α=0.6, β=1.0 without retraining; achieved MOS 4.4 and 55% listener preference. Fine-tuned XTTS-v2 reducing WER by 58.4% (18.54% → 7.71%). Published 2 models on Hugging Face.",
+    technologies: ["Kokoro-82M", "XTTS-v2", "VoxCPM", "PyTorch", "PEFT", "LoRA", "DDP", "Hugging Face"],
     icon: Volume2,
     color: "purple",
     gradient: "from-purple-500 to-pink-500",
+    githubUrl: "https://github.com/Jeevav62/tts-finetune-recipes",
+    hfUrl: "https://huggingface.co/jeevav62",
+  },
+  {
+    id: "2",
+    title: "Real-Time Multilingual Translation System",
+    description:
+      "Browser-native live speech-to-speech translation across 5+ Indian languages at ~380ms E2E latency, supporting 25+ concurrent listeners per room. Reduced cross-lingual TTS latency by 83% (650ms → 75ms) through systematic 5-provider benchmarking. Multi-room WebSocket architecture with API key pool rotation and real-time cost tracking.",
+    technologies: ["Node.js", "WebSocket", "Deepgram Nova-3", "Sarvam Translate", "ElevenLabs", "STT/TTS APIs"],
+    icon: Globe,
+    color: "cyan",
+    gradient: "from-cyan-500 to-teal-500",
+    githubUrl: "https://github.com/Jeevav62/live-translation",
   },
   {
     id: "3",
-    title: "Fake News Bias Detection",
+    title: "LLM SEO — AI-Native Content Engine",
     description:
-      "Browser extension that analyzes news articles in real-time and detects bias using advanced NLP models and transformer architectures.",
-    technologies: ["Transformers", "NLP", "Browser APIs", "JavaScript"],
-    icon: Shield,
-    color: "cyan",
-    gradient: "from-cyan-500 to-teal-500",
+      "Multi-stage AI content engine that researches, verifies, and generates citation-optimized articles directly cited by ChatGPT, Claude, Gemini, and Perplexity. 5-stage pipeline: Question Discovery → Source Authority Mapping → Fact Verification → Hub & Spoke Knowledge Map → Article Generation. Includes hallucination prevention and resume-from-checkpoint for cost safety.",
+    technologies: ["Python", "LLM APIs", "Web Scraping", "JWT Auth", "Cryptography", "Async Processing"],
+    icon: Search,
+    color: "blue",
+    gradient: "from-blue-500 to-indigo-500",
+    githubUrl: "https://github.com/Jeevav62/llm-seo",
   },
   {
     id: "4",
-    title: "RAG AI Agents (Coming Soon)",
+    title: "Offline LLM on Android — Edge AI Inference",
     description:
-      "Advanced RAG system and AI agents built using LiveKit for real-time voice and multimodal interactions. Stay tuned for updates!",
-    technologies: ["RAG", "LiveKit", "AI Agents", "Voice AI"],
-    icon: Sparkles,
+      "On-device LLM inference system deploying LFM 2.5 1.2B on Android (Poco X3) via llama.cpp + CMake — fully offline with zero internet dependency. Proves edge AI viability: quantized LLM runs entirely on consumer mobile hardware with no cloud backend.",
+    technologies: ["Python", "llama.cpp", "CMake", "Android", "LFM 2.5 1.2B", "Edge AI"],
+    icon: Cpu,
+    color: "blue",
+    gradient: "from-blue-500 to-cyan-500",
+    githubUrl: "https://github.com/Jeevav62/AIP",
+  },
+  {
+    id: "5",
+    title: "AI Hoax Buster — Chrome Extension",
+    description:
+      "Browser-integrated NLP Chrome extension for real-time bias and hoax detection with sub-800ms latency on news articles and web content. Engineered deterministic inference pipelines with chunked processing, label normalization, reproducible scoring, and manifest-compliant Chrome extension logic.",
+    technologies: ["Python", "Django", "Hugging Face Transformers", "scikit-learn", "JavaScript", "Chrome APIs"],
+    icon: Shield,
+    color: "cyan",
+    gradient: "from-cyan-500 to-teal-500",
+    githubUrl: "https://github.com/Jeevav62/AI-Hoax-Buster",
+  },
+  {
+    id: "6",
+    title: "RAG Techniques",
+    description:
+      "Comprehensive implementation of normal and advanced RAG methodologies — covering dense retrieval, hybrid search, reranking, GraphRAG, and production-grade optimization patterns for LLM-powered retrieval systems.",
+    technologies: ["Python", "LangChain", "LlamaIndex", "Qdrant", "Neo4j", "RAG", "GraphRAG"],
+    icon: Database,
     color: "purple",
     gradient: "from-purple-500 to-indigo-500",
-    comingSoon: true,
+    githubUrl: "https://github.com/Jeevav62/Rag-techniques",
   },
 ];
+
+const HuggingFaceIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="9" cy="10.5" r="1.25" fill="currentColor" />
+    <circle cx="15" cy="10.5" r="1.25" fill="currentColor" />
+    <path d="M8.5 15c1 1.5 6 1.5 7 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M7 8.5C7.5 7 9 6.5 9 6.5M17 8.5C16.5 7 15 6.5 15 6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+  </svg>
+);
 
 function ProjectCard({
   project,
@@ -67,10 +103,8 @@ function ProjectCard({
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const xPos = (e.clientX - rect.left) / rect.width;
-    const yPos = (e.clientY - rect.top) / rect.height;
-    x.set(xPos);
-    y.set(yPos);
+    x.set((e.clientX - rect.left) / rect.width);
+    y.set((e.clientY - rect.top) / rect.height);
   };
 
   const handleMouseLeave = () => {
@@ -133,29 +167,45 @@ function ProjectCard({
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-4">
-          {!project.comingSoon && (
-            <>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-2 rounded-lg glass hover:bg-white/10 transition-colors"
-              >
-                <Github className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-2 rounded-lg glass hover:bg-white/10 transition-colors"
-              >
-                <ExternalLink className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
-              </motion.button>
-            </>
+        <div className="flex items-center gap-3">
+          {project.githubUrl && (
+            <motion.a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-lg glass hover:bg-white/10 transition-colors"
+              aria-label="GitHub"
+            >
+              <Github className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
+            </motion.a>
           )}
-          {project.comingSoon && (
-            <span className="px-4 py-2 text-sm rounded-lg glass text-slate-400 border border-purple-500/30">
-              Coming Soon
-            </span>
+          {"hfUrl" in project && project.hfUrl && (
+            <motion.a
+              href={project.hfUrl as string}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-lg glass hover:bg-white/10 transition-colors"
+              aria-label="Hugging Face"
+            >
+              <HuggingFaceIcon className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
+            </motion.a>
+          )}
+          {"liveUrl" in project && project.liveUrl && (
+            <motion.a
+              href={project.liveUrl as string}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-lg glass hover:bg-white/10 transition-colors"
+              aria-label="Live Demo"
+            >
+              <ExternalLink className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
+            </motion.a>
           )}
         </div>
 

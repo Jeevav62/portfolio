@@ -9,44 +9,100 @@ import {
   Terminal,
   Code2,
   GitBranch,
-  Smartphone,
   Database,
   Cpu,
   Sparkles,
-  Layers,
   Bot,
+  Server,
+  Cloud,
+  BarChart2,
+  Shield,
+  Layers,
+  Zap,
+  Network,
+  FileCode,
 } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "AI / ML",
+    title: "Generative AI & LLMs",
     color: "blue",
     skills: [
-      { name: "Large Language Models", icon: Brain },
-      { name: "NLP", icon: MessageSquare },
-      { name: "Speech AI", icon: Mic },
+      { name: "LLM Fine-tuning", icon: Brain },
       { name: "Prompt Engineering", icon: Terminal },
-      { name: "RAG Systems", icon: Database },
+      { name: "Context Engineering", icon: MessageSquare },
+      { name: "Prompt Caching", icon: Zap },
+      { name: "Hallucination Prevention", icon: Shield },
+      { name: "Hybrid RAG", icon: Database },
+      { name: "GraphRAG", icon: Network },
+      { name: "Task Arithmetic", icon: Sparkles },
+      { name: "vLLM", icon: Server },
+      { name: "llama.cpp", icon: Cpu },
+      { name: "Hugging Face Hub", icon: Bot },
       { name: "AI Agents", icon: Bot },
     ],
   },
   {
-    title: "Programming",
+    title: "Voice AI",
     color: "purple",
     skills: [
-      { name: "Python", icon: Code2 },
-      { name: "JavaScript", icon: Layers },
-      { name: "TypeScript", icon: Code2 },
+      { name: "TTS Fine-tuning", icon: Mic },
+      { name: "STT Fine-tuning", icon: Mic },
+      { name: "Phoneme Engineering (G2P/IPA)", icon: MessageSquare },
+      { name: "LiveKit", icon: Zap },
     ],
   },
   {
-    title: "Tools & Frameworks",
+    title: "Frameworks & Libraries",
     color: "cyan",
     skills: [
+      { name: "PyTorch", icon: Cpu },
+      { name: "LangChain", icon: Layers },
+      { name: "LlamaIndex", icon: Layers },
+      { name: "LangGraph", icon: Network },
+      { name: "CrewAI", icon: Bot },
+      { name: "Hugging Face Transformers", icon: Sparkles },
+      { name: "PEFT / LoRA / DDP", icon: Brain },
+      { name: "scikit-learn", icon: BarChart2 },
+      { name: "Pandas / NumPy", icon: BarChart2 },
+      { name: "Gradio", icon: FileCode },
+    ],
+  },
+  {
+    title: "Databases & Vector Stores",
+    color: "purple",
+    skills: [
+      { name: "Qdrant", icon: Database },
+      { name: "Neo4j", icon: Network },
+      { name: "Redis", icon: Database },
+      { name: "Supabase", icon: Database },
+      { name: "MySQL", icon: Database },
+    ],
+  },
+  {
+    title: "Backend & Languages",
+    color: "blue",
+    skills: [
+      { name: "Python", icon: Code2 },
+      { name: "SQL", icon: FileCode },
+      { name: "FastAPI", icon: Server },
+      { name: "Flask", icon: Server },
+      { name: "WebSocket", icon: Network },
+      { name: "REST APIs", icon: Server },
+      { name: "JWT Auth / Cryptography", icon: Shield },
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
+    color: "cyan",
+    skills: [
+      { name: "AWS", icon: Cloud },
+      { name: "Docker", icon: Layers },
       { name: "Git", icon: GitBranch },
-      { name: "Android Studio", icon: Smartphone },
-      { name: "TensorFlow/PyTorch", icon: Cpu },
-      { name: "Hugging Face", icon: Sparkles },
+      { name: "RunPod", icon: Cpu },
+      { name: "Multi-GPU Training", icon: Cpu },
+      { name: "EasyPanel", icon: Server },
+      { name: "Power BI", icon: BarChart2 },
     ],
   },
 ];
@@ -87,18 +143,21 @@ function SkillCategory({
       glow: "group-hover:shadow-blue-500/20",
       icon: "text-blue-400",
       gradient: "from-blue-500/20 to-blue-600/20",
+      dot: "bg-blue-500",
     },
     purple: {
       border: "border-purple-500/30 hover:border-purple-500/60",
       glow: "group-hover:shadow-purple-500/20",
       icon: "text-purple-400",
       gradient: "from-purple-500/20 to-purple-600/20",
+      dot: "bg-purple-500",
     },
     cyan: {
       border: "border-cyan-500/30 hover:border-cyan-500/60",
       glow: "group-hover:shadow-cyan-500/20",
       icon: "text-cyan-400",
       gradient: "from-cyan-500/20 to-cyan-600/20",
+      dot: "bg-cyan-500",
     },
   };
 
@@ -113,15 +172,7 @@ function SkillCategory({
       className="glass rounded-2xl p-6 border border-white/10"
     >
       <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-        <span
-          className={`w-3 h-3 rounded-full ${
-            category.color === "blue"
-              ? "bg-blue-500"
-              : category.color === "purple"
-              ? "bg-purple-500"
-              : "bg-cyan-500"
-          }`}
-        />
+        <span className={`w-3 h-3 rounded-full ${colors.dot}`} />
         {category.title}
       </h3>
 
@@ -150,9 +201,9 @@ function SkillCategory({
                 <div
                   className={`p-2 rounded-lg bg-white/5 ${colors.icon} group-hover:scale-110 transition-transform duration-300`}
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-4 h-4" />
                 </div>
-                <span className="text-sm font-medium text-slate-300 group-hover:text-white transition-colors">
+                <span className="text-xs font-medium text-slate-300 group-hover:text-white transition-colors leading-tight">
                   {skill.name}
                 </span>
               </div>
@@ -175,13 +226,13 @@ export default function Skills() {
       <div className="relative max-w-7xl mx-auto">
         <SectionHeading title="Skills & Expertise" subtitle="Technologies and tools I work with" />
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
             <SkillCategory key={category.title} category={category} index={index} />
           ))}
         </div>
 
-        {/* Decorative Stats */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -193,7 +244,7 @@ export default function Skills() {
             { value: "2+", label: "Years Experience" },
             { value: "10+", label: "Projects Completed" },
             { value: "4", label: "Internships" },
-            { value: "2", label: "Publications" },
+            { value: "5", label: "Technical Articles" },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
