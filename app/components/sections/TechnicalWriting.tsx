@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
-import { BookOpen, Clock, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const articles = [
   {
@@ -72,66 +72,41 @@ function ArticleCard({
       href={isComingSoon ? undefined : article.url}
       target={isComingSoon ? undefined : "_blank"}
       rel={isComingSoon ? undefined : "noopener noreferrer"}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={isComingSoon ? {} : { y: -8, scale: 1.02 }}
-      className={`group block ${isComingSoon ? "cursor-default" : ""}`}
+      transition={{ duration: 0.45, delay: (index % 2) * 0.05 }}
+      className={`card group flex flex-col p-6 ${
+        isComingSoon ? "cursor-default" : "card-hover"
+      }`}
+      aria-label={isComingSoon ? `${article.title} (coming soon)` : article.title}
     >
-      <div className={`relative h-full glass rounded-2xl p-6 border border-white/10 ${isComingSoon ? "opacity-70" : "hover:border-blue-500/50"} transition-all duration-500 overflow-hidden`}>
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5 transition-all duration-500" />
-
-        {/* Category Badge */}
-        <div className="relative flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <span className="px-3 py-1 text-xs font-medium rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
-              {article.category}
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <span className="eyebrow">{article.category}</span>
+          {isComingSoon && (
+            <span className="rounded-full border border-[var(--border)] bg-[var(--surface-subtle)] px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-[var(--faint)]">
+              Coming Soon
             </span>
-            {isComingSoon && (
-              <span className="px-3 py-1 text-xs font-medium rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
-                Coming Soon
-              </span>
-            )}
-          </div>
-          {!isComingSoon && (
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              whileHover={{ opacity: 1, x: 0 }}
-              className="p-2 rounded-lg bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"
-            >
-              <ArrowUpRight className="w-4 h-4 text-blue-400" />
-            </motion.div>
           )}
         </div>
-
-        {/* Title */}
-        <h3 className="relative text-xl font-bold text-white mb-3 group-hover:text-gradient-blue transition-all duration-300 line-clamp-2">
-          {article.title}
-        </h3>
-
-        {/* Excerpt */}
-        <p className="relative text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-          {article.excerpt}
-        </p>
-
-        {/* Meta */}
-        <div className="relative flex items-center gap-4 text-sm text-slate-500">
-          <div className="flex items-center gap-1">
-            <BookOpen className="w-4 h-4" />
-            <span>{article.date}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Clock className="w-4 h-4" />
-            <span>{article.readTime}</span>
-          </div>
-        </div>
-
-        {/* Hover Line */}
         {!isComingSoon && (
-          <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-500" />
+          <ArrowUpRight className="h-4 w-4 flex-shrink-0 text-[var(--faint)] opacity-0 transition-opacity group-hover:opacity-100" />
         )}
+      </div>
+
+      <h3 className="mt-3 font-[family-name:var(--font-space-grotesk)] text-lg font-semibold leading-snug text-[var(--foreground)]">
+        {article.title}
+      </h3>
+
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--muted)]">
+        {article.excerpt}
+      </p>
+
+      <div className="mt-5 flex items-center gap-3 border-t border-[var(--border)] pt-4 font-[family-name:var(--font-geist-mono)] text-xs text-[var(--faint)]">
+        <span className="tnum">{article.date}</span>
+        <span className="h-1 w-1 rounded-full bg-[var(--border-strong)]" />
+        <span>{article.readTime}</span>
       </div>
     </motion.a>
   );
@@ -139,25 +114,19 @@ function ArticleCard({
 
 export default function TechnicalWriting() {
   return (
-    <section id="writing" className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8">
-      {/* Background Decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative max-w-6xl mx-auto">
+    <section id="writing" className="relative px-6 py-24 sm:px-8 md:py-32 lg:px-12">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
-          title="Technical Writing"
-          subtitle="Sharing knowledge and insights about AI, ML, and software engineering"
+          eyebrow="Writing"
+          title="Technical writing"
+          subtitle="Published engineering articles on Voice AI, RAG, LLM optimization, and edge inference, mostly on the F22 Labs engineering blog."
         />
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid gap-5 md:grid-cols-2">
           {articles.map((article, index) => (
             <ArticleCard key={article.id} article={article} index={index} />
           ))}
         </div>
-
       </div>
     </section>
   );

@@ -27,66 +27,22 @@ const HuggingFaceIcon = ({ className }: { className?: string }) => (
 );
 
 const contactInfo = [
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+91 8946038533",
-    href: "tel:+918946038533",
-    color: "blue",
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: "jeevav62@gmail.com",
-    href: "mailto:jeevav62@gmail.com",
-    color: "purple",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Chennai, India",
-    href: "#",
-    color: "cyan",
-  },
+  { icon: Phone, label: "Phone", value: "+91 8946038533", href: "tel:+918946038533" },
+  { icon: Mail, label: "Email", value: "jeevav62@gmail.com", href: "mailto:jeevav62@gmail.com" },
+  { icon: MapPin, label: "Location", value: "Chennai, India", href: null },
 ];
 
 const socialLinks = [
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/jeevarathinamv/",
-    color: "#0077B5",
-  },
-  {
-    icon: Github,
-    label: "GitHub",
-    href: "https://github.com/Jeevav62",
-    color: "#888",
-  },
-  {
-    icon: HuggingFaceIcon,
-    label: "Hugging Face",
-    href: "https://huggingface.co/jeevav62",
-    color: "#FF9D00",
-  },
-  {
-    icon: Instagram,
-    label: "Instagram",
-    href: "https://www.instagram.com/jeevav62/",
-    color: "#E4405F",
-  },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/jeevarathinamv/" },
+  { icon: Github, label: "GitHub", href: "https://github.com/Jeevav62" },
+  { icon: HuggingFaceIcon, label: "Hugging Face", href: "https://huggingface.co/jeevav62" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/jeevav62/" },
 ];
 
-// Using Formspree for form handling
-// Replace 'xqkrovpo' with your actual Formspree form ID from your form endpoint
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mvzwoepz";
 
 export default function Contact() {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -99,9 +55,7 @@ export default function Contact() {
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
 
@@ -112,210 +66,180 @@ export default function Contact() {
       } else {
         setError("Failed to send message. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setError("An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  return (
-    <section id="contact" className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8">
-      {/* Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-t from-blue-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl" />
-      </div>
+  const inputClass =
+    "w-full rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--foreground)] placeholder-[var(--faint)] transition-colors focus:border-[var(--accent)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20";
 
-      <div className="relative max-w-7xl mx-auto">
+  return (
+    <section id="contact" className="relative px-6 py-24 sm:px-8 md:py-32 lg:px-12">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
-          title="Get In Touch"
-          subtitle="Let's collaborate on your next AI project"
+          eyebrow="Contact"
+          title="Let's build something"
+          subtitle="Open to AI / ML engineering roles and collaborations. Reach out, I reply fast."
         />
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
+        <div className="grid gap-10 lg:grid-cols-2">
+          {/* Contact info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
+            transition={{ duration: 0.45 }}
+            className="space-y-6"
           >
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">Let&apos;s Talk</h3>
-              <p className="text-slate-400 leading-relaxed">
-                I&apos;m always open to discussing new projects, creative ideas, or opportunities to be
-                part of your vision. Feel free to reach out!
-              </p>
-            </div>
-
-            {/* Contact Cards */}
-            <div className="space-y-4">
-              {contactInfo.map((item, index) => {
+            <div className="space-y-3">
+              {contactInfo.map((item) => {
                 const Icon = item.icon;
-                const colorClasses = {
-                  blue: "hover:border-blue-500/50 hover:shadow-blue-500/20",
-                  purple: "hover:border-purple-500/50 hover:shadow-purple-500/20",
-                  cyan: "hover:border-cyan-500/50 hover:shadow-cyan-500/20",
-                };
-                const iconColors = {
-                  blue: "text-blue-400 bg-blue-500/10",
-                  purple: "text-purple-400 bg-purple-500/10",
-                  cyan: "text-cyan-400 bg-cyan-500/10",
-                };
-
-                return (
-                  <motion.a
+                const inner = (
+                  <>
+                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--accent-soft)]">
+                      <Icon className="h-5 w-5 text-[var(--accent)]" />
+                    </span>
+                    <div className="flex-1">
+                      <p className="text-xs uppercase tracking-wide text-[var(--faint)]">
+                        {item.label}
+                      </p>
+                      <p className="font-medium text-[var(--foreground)]">{item.value}</p>
+                    </div>
+                    {item.href && (
+                      <ArrowUpRight className="h-4 w-4 text-[var(--faint)] opacity-0 transition-opacity group-hover:opacity-100" />
+                    )}
+                  </>
+                );
+                return item.href ? (
+                  <a
                     key={item.label}
                     href={item.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className={`flex items-center gap-4 p-4 rounded-xl glass border border-white/10 ${colorClasses[item.color as keyof typeof colorClasses]} transition-all duration-300 group`}
+                    className="card card-hover group flex items-center gap-4 p-4"
                   >
-                    <div
-                      className={`p-3 rounded-lg ${iconColors[item.color as keyof typeof iconColors]}`}
-                    >
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm text-slate-500">{item.label}</p>
-                      <p className="text-white font-medium group-hover:text-gradient transition-all">
-                        {item.value}
-                      </p>
-                    </div>
-                    <ArrowUpRight className="w-5 h-5 text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </motion.a>
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={item.label} className="card flex items-center gap-4 p-4">
+                    {inner}
+                  </div>
                 );
               })}
             </div>
 
-            {/* Social Links */}
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Follow Me</h4>
-              <div className="flex gap-3">
-                {socialLinks.map((social, index) => {
+              <p className="eyebrow">Find me online</p>
+              <div className="mt-3 flex gap-2">
+                {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
-                    <motion.a
+                    <a
                       key={social.label}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 + index * 0.1 }}
-                      whileHover={{ scale: 1.1, y: -5 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="p-4 rounded-xl glass border border-white/10 hover:border-white/30 transition-all group"
-                      style={{ borderColor: `${social.color}30` }}
+                      aria-label={social.label}
+                      className="rounded-lg border border-[var(--border)] p-3 text-[var(--muted)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--foreground)]"
                     >
-                      <Icon
-                        className="w-6 h-6 text-slate-400 group-hover:text-white transition-colors"
-                        style={{ color: social.color }}
-                      />
-                    </motion.a>
+                      <Icon className="h-5 w-5" />
+                    </a>
                   );
                 })}
               </div>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.45, delay: 0.1 }}
           >
-            <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 border border-white/10">
-              <h3 className="text-xl font-bold text-white mb-6">Send a Message</h3>
-
-              <div className="space-y-6">
-                {/* Name Input */}
+            <form onSubmit={handleSubmit} className="card p-6 sm:p-8">
+              <div className="space-y-5">
                 <div>
-                  <label className="block text-sm text-slate-400 mb-2">Your Name</label>
-                  <motion.input
-                    whileFocus={{ scale: 1.01 }}
+                  <label htmlFor="name" className="mb-1.5 block text-sm text-[var(--muted)]">
+                    Name
+                  </label>
+                  <input
+                    id="name"
                     type="text"
                     name="name"
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
-                    placeholder="John Doe"
+                    className={inputClass}
+                    placeholder="Jane Doe"
                     required
                   />
                 </div>
 
-                {/* Email Input */}
                 <div>
-                  <label className="block text-sm text-slate-400 mb-2">Your Email</label>
-                  <motion.input
-                    whileFocus={{ scale: 1.01 }}
+                  <label htmlFor="email" className="mb-1.5 block text-sm text-[var(--muted)]">
+                    Email
+                  </label>
+                  <input
+                    id="email"
                     type="email"
                     name="email"
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
-                    placeholder="john@example.com"
+                    className={inputClass}
+                    placeholder="jane@example.com"
                     required
                   />
                 </div>
 
-                {/* Message Input */}
                 <div>
-                  <label className="block text-sm text-slate-400 mb-2">Your Message</label>
-                  <motion.textarea
-                    whileFocus={{ scale: 1.01 }}
+                  <label htmlFor="message" className="mb-1.5 block text-sm text-[var(--muted)]">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
                     name="message"
                     value={formState.message}
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all resize-none"
-                    placeholder="Tell me about your project..."
+                    className={`${inputClass} resize-none`}
+                    placeholder="Tell me about the role or project..."
                     required
                   />
                 </div>
 
-                {/* Error Message */}
                 {error && (
-                  <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                  <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">
                     {error}
                   </div>
                 )}
 
-                {/* Submit Button */}
-                <motion.button
+                <button
                   type="submit"
                   disabled={isSubmitting || isSubmitted}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`w-full py-4 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${
+                  className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white transition-colors ${
                     isSubmitted
-                      ? "bg-green-500 text-white"
-                      : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500 shadow-lg shadow-blue-500/25"
-                  } ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
+                      ? "bg-emerald-600"
+                      : "bg-[var(--accent)] hover:bg-[var(--accent-hover)]"
+                  } ${isSubmitting ? "cursor-not-allowed opacity-70" : ""}`}
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      <span>Sending...</span>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Sending...
                     </>
                   ) : isSubmitted ? (
                     <>
-                      <CheckCircle className="w-5 h-5" />
-                      <span>Message Sent!</span>
+                      <CheckCircle className="h-4 w-4" />
+                      Message sent
                     </>
                   ) : (
                     <>
-                      <Send className="w-5 h-5" />
-                      <span>Send Message</span>
+                      <Send className="h-4 w-4" />
+                      Send message
                     </>
                   )}
-                </motion.button>
+                </button>
               </div>
             </form>
           </motion.div>

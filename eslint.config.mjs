@@ -11,6 +11,8 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    // Static export output (next.config.ts distDir).
+    "dist/**",
     "next-env.d.ts",
   ]),
 ]);

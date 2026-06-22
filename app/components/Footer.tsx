@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Github, Linkedin, Instagram, Mail, ArrowUp } from "lucide-react";
 
 const HuggingFaceIcon = ({ className }: { className?: string }) => (
@@ -29,69 +28,46 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative py-12 px-4 sm:px-6 lg:px-8 border-t border-white/5">
-      {/* Background Glow */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-t from-blue-500/5 to-transparent rounded-full blur-3xl" />
-      </div>
+    <footer className="relative border-t border-[var(--border)] px-6 py-12 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-6xl">
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+          <div>
+            <p className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold text-[var(--foreground)]">
+              Jeevarathinam V
+            </p>
+            <p className="mt-1 text-sm text-[var(--muted)]">
+              AI / ML Engineer · Chennai, India
+            </p>
+          </div>
 
-      <div className="relative max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-2xl font-bold text-gradient"
-          >
-            Jeevarathinam V
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="flex items-center gap-3"
-          >
-            {socialLinks.map((social, index) => {
+          <div className="flex items-center gap-2">
+            {socialLinks.map((social) => {
               const Icon = social.icon;
               return (
-                <motion.a
+                <a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 + index * 0.05 }}
-                  whileHover={{ scale: 1.1, y: -3 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="p-3 rounded-xl glass border border-white/10 text-slate-400 hover:text-white hover:border-white/30 transition-all"
                   aria-label={social.label}
+                  className="rounded-lg border border-[var(--border)] p-2.5 text-[var(--muted)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--foreground)]"
                 >
-                  <Icon className="w-5 h-5" />
-                </motion.a>
+                  <Icon className="h-5 w-5" />
+                </a>
               );
             })}
-          </motion.div>
+            <button
+              onClick={scrollToTop}
+              aria-label="Back to top"
+              className="group rounded-lg border border-[var(--border)] p-2.5 text-[var(--muted)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--foreground)]"
+            >
+              <ArrowUp className="h-5 w-5 transition-transform group-hover:-translate-y-0.5" />
+            </button>
+          </div>
+        </div>
 
-          {/* Back to Top */}
-          <motion.button
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            whileHover={{ scale: 1.1, y: -3 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={scrollToTop}
-            className="p-3 rounded-xl glass border border-white/10 text-slate-400 hover:text-white hover:border-white/30 transition-all group"
-            aria-label="Back to top"
-          >
-            <ArrowUp className="w-5 h-5 transition-transform group-hover:-translate-y-1" />
-          </motion.button>
+        <div className="mt-8 border-t border-[var(--border)] pt-6 text-center text-sm text-[var(--faint)]">
+          © {currentYear} Jeevarathinam V
         </div>
       </div>
     </footer>

@@ -1,147 +1,125 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
-import dynamic from "next/dynamic";
+import { ArrowRight, FileDown, MapPin } from "lucide-react";
 import Button from "../ui/Button";
+import SubtleBackground from "../ui/SubtleBackground";
 
-const NeuralNetwork = dynamic(() => import("../3d/NeuralNetwork"), {
-  ssr: false,
-  loading: () => (
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20" />
-  ),
-});
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.08 * i, duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  }),
+};
+
+const tags = ["LLM Fine-tuning", "Voice AI", "RAG", "AI Agents"];
 
 export default function Hero() {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const scrollTo = (id: string) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full overflow-hidden grid grid-rows-[1fr_auto]"
+      className="relative flex min-h-screen w-full items-center overflow-hidden px-6 sm:px-8 lg:px-12"
     >
-      {/* 3D Background */}
-      <NeuralNetwork />
+      <SubtleBackground />
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#030712] pointer-events-none" />
-
-      {/* Row 1: Content centered */}
-      <div className="relative z-10 flex items-center justify-center text-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto w-full">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {/* Main Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-3"
-            >
-              <span className="text-white">Jeevarathinam</span>
-              <br />
-              <span className="text-gradient">V</span>
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-xl sm:text-2xl md:text-3xl text-slate-400 mb-4"
-            >
-              Building intelligent systems with
-            </motion.p>
-
-            {/* Tech Stack Pills */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex flex-wrap items-center justify-center gap-3 mb-6"
-            >
-              {["LLMs", "Speech AI", "NLP", "Agents"].map((tech, index) => (
-                <motion.span
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.7 + index * 0.1 }}
-                  className="px-4 py-2 rounded-full glass text-sm font-medium text-slate-300 border border-white/10 hover:border-blue-500/50 hover:text-blue-400 transition-colors cursor-default"
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </motion.div>
-
-            {/* Location */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="text-slate-500 mb-8 flex items-center justify-center gap-2"
-            >
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Chennai, India
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={() => scrollToSection("projects")}
-                icon={<ArrowDown className="w-5 h-5" />}
-              >
-                View Projects
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => scrollToSection("contact")}
-              >
-                Contact Me
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Row 2: Scroll Indicator — always below content, never overlaps */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="relative z-20 flex justify-center pb-8 pt-4"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2 cursor-pointer"
-          onClick={() => scrollToSection("about")}
+      <div className="relative z-10 mx-auto w-full max-w-5xl py-32">
+        <motion.span
+          custom={0}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="inline-flex items-center gap-2 text-sm text-[var(--muted)]"
         >
-          <span className="text-sm text-slate-500">Scroll to explore</span>
-          <div className="w-6 h-10 rounded-full border-2 border-slate-600 flex items-start justify-center p-1">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="w-1.5 h-3 rounded-full bg-gradient-to-b from-blue-500 to-purple-500"
-            />
-          </div>
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          Open to AI / ML Engineering roles
+        </motion.span>
+
+        <motion.h1
+          custom={1}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="mt-6 font-[family-name:var(--font-space-grotesk)] text-5xl font-semibold leading-[1.05] tracking-tight text-[var(--foreground)] sm:text-6xl md:text-7xl"
+        >
+          Jeevarathinam V
+        </motion.h1>
+
+        <motion.p
+          custom={2}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="mt-4 text-xl font-medium text-[var(--foreground)] sm:text-2xl"
+        >
+          AI / ML Engineer
+        </motion.p>
+
+        <motion.p
+          custom={3}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="mt-5 max-w-2xl text-base leading-relaxed text-[var(--muted)] sm:text-lg"
+        >
+          I turn frontier AI research into products people actually use. I fine-tune
+          voice and language models, design retrieval systems, and ship them end to end
+          from prototype to production.
+        </motion.p>
+
+        <motion.div
+          custom={4}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="mt-7 flex flex-wrap gap-2"
+        >
+          {tags.map((t) => (
+            <span
+              key={t}
+              className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 font-[family-name:var(--font-geist-mono)] text-xs text-[var(--muted)]"
+            >
+              {t}
+            </span>
+          ))}
         </motion.div>
-      </motion.div>
+
+        <motion.div
+          custom={5}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
+        >
+          <Button
+            variant="primary"
+            size="lg"
+            onClick={() => scrollTo("projects")}
+            icon={<ArrowRight className="h-4 w-4" />}
+          >
+            View Work
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            href="/Jeeva-resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+            icon={<FileDown className="h-4 w-4" />}
+          >
+            Download Résumé
+          </Button>
+          <span className="flex items-center gap-1.5 text-sm text-[var(--faint)]">
+            <MapPin className="h-4 w-4" />
+            Chennai, India
+          </span>
+        </motion.div>
+      </div>
     </section>
   );
 }

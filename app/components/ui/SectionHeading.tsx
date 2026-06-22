@@ -3,53 +3,35 @@
 import { motion } from "framer-motion";
 
 interface SectionHeadingProps {
+  eyebrow?: string;
   title: string;
   subtitle?: string;
-  align?: "left" | "center" | "right";
-  gradient?: boolean;
+  align?: "left" | "center";
 }
 
 export default function SectionHeading({
+  eyebrow,
   title,
   subtitle,
-  align = "center",
-  gradient = true,
+  align = "left",
 }: SectionHeadingProps) {
-  const alignStyles = {
-    left: "text-left",
-    center: "text-center",
-    right: "text-right",
-  };
+  const alignCls = align === "center" ? "text-center mx-auto items-center" : "text-left items-start";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className={`mb-12 ${alignStyles[align]}`}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className={`mb-12 flex flex-col gap-3 ${alignCls} ${align === "center" ? "max-w-2xl" : ""}`}
     >
-      <h2
-        className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${
-          gradient ? "text-gradient" : "text-white"
-        }`}
-      >
+      {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+      <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl md:text-4xl font-semibold tracking-tight text-[var(--foreground)]">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-slate-400 text-lg max-w-2xl mx-auto">{subtitle}</p>
+        <p className="text-[var(--muted)] text-base md:text-lg leading-relaxed">{subtitle}</p>
       )}
-      <div
-        className={`mt-4 flex ${
-          align === "center"
-            ? "justify-center"
-            : align === "right"
-            ? "justify-end"
-            : "justify-start"
-        }`}
-      >
-        <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-      </div>
     </motion.div>
   );
 }

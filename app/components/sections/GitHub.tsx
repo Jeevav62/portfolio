@@ -2,27 +2,47 @@
 
 import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
-import { Github, Star, GitFork, ExternalLink, BookMarked, Download } from "lucide-react";
+import { Github, Star, Download, Heart, ArrowUpRight } from "lucide-react";
 
 const githubStats = [
-  { label: "Repositories", value: "15", icon: GitFork },
-  { label: "Stars Earned", value: "5", icon: Star },
+  { label: "Public Repos", value: "13" },
+  { label: "Stars Earned", value: "14" },
+];
+
+const topRepos = [
+  { name: "tts-finetune-recipes", url: "https://github.com/Jeevav62/tts-finetune-recipes" },
+  { name: "Rag-techniques", url: "https://github.com/Jeevav62/Rag-techniques" },
+  { name: "chunking-techniques", url: "https://github.com/Jeevav62/chunking-techniques" },
+  { name: "live-translation", url: "https://github.com/Jeevav62/live-translation" },
+  { name: "voxpolish", url: "https://github.com/Jeevav62/voxpolish" },
+  { name: "pocketlfm", url: "https://github.com/Jeevav62/pocketlfm" },
+  { name: "linkedin-job-finder", url: "https://github.com/Jeevav62/linkedin-job-finder" },
 ];
 
 const hfModels = [
   {
     id: "xtts",
-    name: "jeevav62/xtts-v2-indian-en",
-    desc: "XTTS-v2 fine-tuned on Indian-English. WER reduced 58.4% (18.54% to 7.71%), semantic similarity +12.1%",
-    downloads: "79+",
+    name: "xtts-v2-indian-en",
+    desc: "XTTS-v2 fine-tuned on Indian-English. WER reduced 58.4% (18.54% → 7.71%), semantic similarity +12.1%.",
+    downloads: "91",
+    likes: "3",
     url: "https://huggingface.co/jeevav62/xtts-v2-indian-en",
   },
   {
     id: "kokoro",
-    name: "jeevav62/kokoro-82m-indian-en",
-    desc: "Kokoro-82M fine-tuned on 4,358 Indian-English clips. Indian proper noun pronunciation improved from 3.4/10 to 8.8/10",
-    downloads: "—",
+    name: "kokoro-82m-indian-en",
+    desc: "Kokoro-82M fine-tuned on 4,358 Indian-English clips. Proper-noun pronunciation improved 3.4 → 8.8 / 10.",
+    downloads: "28",
+    likes: "4",
     url: "https://huggingface.co/jeevav62/kokoro-82m-indian-en",
+  },
+  {
+    id: "voxcpm",
+    name: "voxcpm-lora-finetune",
+    desc: "VoxCPM LoRA fine-tune for expressive Indian-English speech synthesis with parameter-efficient adapters.",
+    downloads: "1",
+    likes: "—",
+    url: "https://huggingface.co/jeevav62/voxcpm-lora-finetune",
   },
 ];
 
@@ -38,132 +58,136 @@ const HuggingFaceIcon = ({ className }: { className?: string }) => (
 
 export default function GitHubSection() {
   return (
-    <section id="github" className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="github" className="relative px-6 py-24 sm:px-8 md:py-32 lg:px-12">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
-          title="Open Source"
-          subtitle="GitHub projects and Hugging Face models"
+          eyebrow="Open Source"
+          title="Models & code in the open"
+          subtitle="Fine-tuned models published on Hugging Face and research code on GitHub."
         />
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* GitHub Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="glass rounded-3xl p-8 border border-white/10 overflow-hidden"
-          >
-            {/* Header */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center border border-white/10">
-                <Github className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white">Jeevav62</h3>
-                <p className="text-slate-400 text-sm">AI / ML Engineer</p>
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              {githubStats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="glass rounded-xl p-4 text-center border border-white/5"
-                  >
-                    <Icon className="w-5 h-5 text-slate-400 mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                    <div className="text-xs text-slate-500">{stat.label}</div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            <motion.a
-              href="https://github.com/Jeevav62"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-slate-900 font-medium hover:bg-slate-200 transition-colors"
-            >
-              <Github className="w-5 h-5" />
-              <span>View GitHub Profile</span>
-              <ExternalLink className="w-4 h-4" />
-            </motion.a>
-          </motion.div>
-
+        <div className="grid gap-5 md:grid-cols-2">
           {/* Hugging Face Card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="glass rounded-3xl p-8 border border-white/10 overflow-hidden"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.45 }}
+            className="card flex flex-col p-6"
           >
-            {/* Header */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-900/40 to-yellow-900/40 flex items-center justify-center border border-orange-500/20">
-                <HuggingFaceIcon className="w-7 h-7 text-orange-400" />
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--accent-soft)]">
+                  <HuggingFaceIcon className="h-6 w-6 text-[var(--accent)]" />
+                </span>
+                <div>
+                  <h3 className="font-semibold text-[var(--foreground)]">Hugging Face</h3>
+                  <p className="font-[family-name:var(--font-geist-mono)] text-xs text-[var(--faint)]">
+                    @jeevav62
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-white">jeevav62</h3>
-                <p className="text-slate-400 text-sm">2 Published Models</p>
-              </div>
+              <span className="eyebrow">3 Models</span>
             </div>
 
-            {/* Models */}
-            <div className="space-y-4 mb-6">
-              {hfModels.map((model, index) => (
-                <motion.a
+            <div className="mt-5 space-y-3">
+              {hfModels.map((model) => (
+                <a
                   key={model.id}
                   href={model.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                  className="block glass rounded-xl p-4 border border-white/5 hover:border-orange-500/30 transition-all group"
+                  className="group block rounded-lg border border-[var(--border)] p-4 transition-colors hover:border-[var(--border-strong)] hover:bg-[var(--surface-subtle)]"
                 >
-                  <div className="flex items-start justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <BookMarked className="w-4 h-4 text-orange-400" />
-                      <span className="text-sm font-medium text-white group-hover:text-orange-400 transition-colors truncate">
-                        {model.name}
-                      </span>
-                    </div>
-                    <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors flex-shrink-0 ml-2" />
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-[family-name:var(--font-geist-mono)] text-sm font-medium text-[var(--foreground)]">
+                      {model.name}
+                    </span>
+                    <ArrowUpRight className="h-4 w-4 flex-shrink-0 text-[var(--faint)] opacity-0 transition-opacity group-hover:opacity-100" />
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed mb-3">{model.desc}</p>
-                  <div className="flex items-center gap-1 text-xs text-slate-500">
-                    <Download className="w-3 h-3" />
-                    <span>{model.downloads} downloads</span>
+                  <p className="mt-1.5 text-xs leading-relaxed text-[var(--muted)]">{model.desc}</p>
+                  <div className="mt-3 flex items-center gap-4 font-[family-name:var(--font-geist-mono)] text-xs text-[var(--faint)]">
+                    <span className="inline-flex items-center gap-1 tnum">
+                      <Download className="h-3 w-3" /> {model.downloads}
+                    </span>
+                    <span className="inline-flex items-center gap-1 tnum">
+                      <Heart className="h-3 w-3" /> {model.likes}
+                    </span>
                   </div>
-                </motion.a>
+                </a>
               ))}
             </div>
 
-            <motion.a
+            <a
               href="https://huggingface.co/jeevav62"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-medium hover:from-orange-400 hover:to-yellow-400 transition-all"
+              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border-strong)] px-4 py-2.5 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-[var(--surface-subtle)]"
             >
-              <HuggingFaceIcon className="w-5 h-5" />
-              <span>View Hugging Face Profile</span>
-              <ExternalLink className="w-4 h-4" />
-            </motion.a>
+              <HuggingFaceIcon className="h-4 w-4" />
+              View profile
+            </a>
+          </motion.div>
+
+          {/* GitHub Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.45, delay: 0.05 }}
+            className="card flex flex-col p-6"
+          >
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--surface-subtle)]">
+                <Github className="h-6 w-6 text-[var(--foreground)]" />
+              </span>
+              <div>
+                <h3 className="font-semibold text-[var(--foreground)]">GitHub</h3>
+                <p className="font-[family-name:var(--font-geist-mono)] text-xs text-[var(--faint)]">
+                  @Jeevav62
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              {githubStats.map((stat) => (
+                <div key={stat.label} className="rounded-lg border border-[var(--border)] p-4 text-center">
+                  <div className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[var(--foreground)] tnum">
+                    {stat.value}
+                  </div>
+                  <div className="mt-0.5 text-xs text-[var(--faint)]">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-5 eyebrow">Top repositories</p>
+            <div className="mt-3 flex-1 space-y-1">
+              {topRepos.map((repo) => (
+                <a
+                  key={repo.name}
+                  href={repo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between rounded-md px-2 py-1.5 transition-colors hover:bg-[var(--surface-subtle)]"
+                >
+                  <span className="flex items-center gap-2 font-[family-name:var(--font-geist-mono)] text-sm text-[var(--muted)] group-hover:text-[var(--foreground)]">
+                    <Star className="h-3.5 w-3.5 text-[var(--faint)]" />
+                    {repo.name}
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 text-[var(--faint)] opacity-0 transition-opacity group-hover:opacity-100" />
+                </a>
+              ))}
+            </div>
+
+            <a
+              href="https://github.com/Jeevav62"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border-strong)] px-4 py-2.5 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-[var(--surface-subtle)]"
+            >
+              <Github className="h-4 w-4" />
+              View profile
+            </a>
           </motion.div>
         </div>
       </div>
