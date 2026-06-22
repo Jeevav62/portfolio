@@ -82,7 +82,14 @@ export default function Experience() {
               {/* marker */}
               <span className="absolute -left-[37px] top-1.5 h-3 w-3 rounded-full border-2 border-[var(--background)] bg-[var(--accent)]" />
 
-              <div className="card card-hover p-6">
+              <div
+                onMouseMove={(e) => {
+                  const r = e.currentTarget.getBoundingClientRect();
+                  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+                  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+                }}
+                className="spotlight card card-hover p-6"
+              >
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                   <h3 className="text-lg font-semibold text-[var(--foreground)]">
                     {exp.role}

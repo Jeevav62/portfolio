@@ -31,7 +31,12 @@ export default function Certifications() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.45, delay: (index % 3) * 0.05 }}
-              className="card card-hover flex items-start gap-3 p-5"
+              onMouseMove={(e) => {
+                const r = e.currentTarget.getBoundingClientRect();
+                e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+                e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+              }}
+              className="spotlight card card-hover flex items-start gap-3 p-5"
             >
               <span className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--accent-soft)]">
                 <Award className="h-4 w-4 text-[var(--accent)]" />

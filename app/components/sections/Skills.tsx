@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
+import CountUp from "../ui/CountUp";
 
 const skillCategories = [
   {
@@ -78,10 +79,10 @@ const skillCategories = [
 ];
 
 const stats = [
-  { value: "4", label: "Internships" },
-  { value: "3", label: "Published Models" },
-  { value: "5", label: "Technical Articles" },
-  { value: "10+", label: "Shipped Projects" },
+  { value: 4, suffix: "", label: "Internships" },
+  { value: 3, suffix: "", label: "Published Models" },
+  { value: 5, suffix: "", label: "Technical Articles" },
+  { value: 10, suffix: "+", label: "Shipped Projects" },
 ];
 
 export default function Skills() {
@@ -102,7 +103,12 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.45, delay: (index % 3) * 0.05 }}
-              className="card p-6"
+              onMouseMove={(e) => {
+                const r = e.currentTarget.getBoundingClientRect();
+                e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+                e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+              }}
+              className="spotlight card card-hover p-6"
             >
               <h3 className="flex items-center gap-2 font-[family-name:var(--font-space-grotesk)] text-base font-semibold text-[var(--foreground)]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
@@ -133,9 +139,11 @@ export default function Skills() {
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className="card p-6 text-center"
             >
-              <div className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-[var(--foreground)] tnum">
-                {stat.value}
-              </div>
+              <CountUp
+                value={stat.value}
+                suffix={stat.suffix}
+                className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-[var(--foreground)]"
+              />
               <div className="mt-1 text-sm text-[var(--muted)]">{stat.label}</div>
             </motion.div>
           ))}

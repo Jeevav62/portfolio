@@ -76,7 +76,12 @@ function ArticleCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.45, delay: (index % 2) * 0.05 }}
-      className={`card group flex flex-col p-6 ${
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }}
+      className={`spotlight card group flex flex-col p-6 ${
         isComingSoon ? "cursor-default" : "card-hover"
       }`}
       aria-label={isComingSoon ? `${article.title} (coming soon)` : article.title}

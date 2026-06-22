@@ -3,10 +3,11 @@
 import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
 import { Github, Star, Download, Heart, ArrowUpRight } from "lucide-react";
+import CountUp from "../ui/CountUp";
 
 const githubStats = [
-  { label: "Public Repos", value: "13" },
-  { label: "Stars Earned", value: "14" },
+  { label: "Public Repos", value: 13 },
+  { label: "Stars Earned", value: 14 },
 ];
 
 const topRepos = [
@@ -73,7 +74,12 @@ export default function GitHubSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.45 }}
-            className="card flex flex-col p-6"
+            onMouseMove={(e) => {
+              const r = e.currentTarget.getBoundingClientRect();
+              e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+              e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+            }}
+            className="spotlight card flex flex-col p-6"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -135,7 +141,12 @@ export default function GitHubSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.45, delay: 0.05 }}
-            className="card flex flex-col p-6"
+            onMouseMove={(e) => {
+              const r = e.currentTarget.getBoundingClientRect();
+              e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+              e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+            }}
+            className="spotlight card flex flex-col p-6"
           >
             <div className="flex items-center gap-3">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--surface-subtle)]">
@@ -152,9 +163,10 @@ export default function GitHubSection() {
             <div className="mt-5 grid grid-cols-2 gap-3">
               {githubStats.map((stat) => (
                 <div key={stat.label} className="rounded-lg border border-[var(--border)] p-4 text-center">
-                  <div className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[var(--foreground)] tnum">
-                    {stat.value}
-                  </div>
+                  <CountUp
+                    value={stat.value}
+                    className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[var(--foreground)]"
+                  />
                   <div className="mt-0.5 text-xs text-[var(--faint)]">{stat.label}</div>
                 </div>
               ))}

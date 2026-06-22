@@ -107,7 +107,12 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.45, delay: (i % 2) * 0.05 }}
-              className="card card-hover group flex flex-col p-6"
+              onMouseMove={(e) => {
+                const r = e.currentTarget.getBoundingClientRect();
+                e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+                e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+              }}
+              className="spotlight card card-hover group flex flex-col p-6"
             >
               <div className="flex items-center justify-between">
                 <span className="eyebrow">{project.tag}</span>
