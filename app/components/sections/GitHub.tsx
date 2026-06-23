@@ -6,8 +6,8 @@ import { Github, Star, Download, Heart, ArrowUpRight } from "lucide-react";
 import CountUp from "../ui/CountUp";
 
 const githubStats = [
-  { label: "Public Repos", value: 13 },
-  { label: "Stars Earned", value: 14 },
+  { label: "Public Repos", value: 16 },
+  { label: "Stars Earned", value: 52 },
 ];
 
 const topRepos = [
@@ -25,7 +25,7 @@ const hfModels = [
     id: "xtts",
     name: "xtts-v2-indian-en",
     desc: "XTTS-v2 fine-tuned on Indian-English. WER reduced 58.4% (18.54% → 7.71%), semantic similarity +12.1%.",
-    downloads: "91",
+    downloads: "93",
     likes: "3",
     url: "https://huggingface.co/jeevav62/xtts-v2-indian-en",
   },
@@ -33,7 +33,7 @@ const hfModels = [
     id: "kokoro",
     name: "kokoro-82m-indian-en",
     desc: "Kokoro-82M fine-tuned on 4,358 Indian-English clips. Proper-noun pronunciation improved 3.4 → 8.8 / 10.",
-    downloads: "28",
+    downloads: "29",
     likes: "4",
     url: "https://huggingface.co/jeevav62/kokoro-82m-indian-en",
   },
