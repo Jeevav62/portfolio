@@ -74,12 +74,12 @@ const projects: {
   },
   {
     id: "6",
-    title: "RAG Techniques Cookbook",
-    tag: "Retrieval",
+    title: "MindVault: Secure Knowledge Assistant",
+    tag: "Secure RAG · Full-Stack",
     description:
-      "Practical implementations of 10 advanced RAG methods (Naive, Hybrid, HyDE, Fusion, Parent-Child, RRR, Contextual Compression, GraphRAG and more) with production-grade optimization patterns for LLM retrieval.",
-    technologies: ["Python", "LangChain", "LlamaIndex", "Qdrant", "Neo4j", "GraphRAG"],
-    links: [{ type: "github", url: "https://github.com/Jeevav62/Rag-techniques" }],
+      "Privacy-first RAG assistant for cited, grounded Q&A over your documents with persistent memory. Security-first build: AES-256-GCM encryption at rest, Argon2id password hashing, short-lived JWT with refresh rotation, and Supabase Row-Level Security with per-user vector isolation. Hardened with per-IP rate limiting and automatic failover across providers.",
+    technologies: ["FastAPI", "Next.js", "Argon2id", "JWT Rotation", "AES-256-GCM", "Supabase RLS", "Mem0", "Qdrant", "Pinecone"],
+    links: [{ type: "github", url: "https://github.com/Jeevav62/mindvault" }],
   },
 ];
 
@@ -116,7 +116,15 @@ export default function Projects() {
             >
               <div className="flex items-center justify-between">
                 <span className="eyebrow">{project.tag}</span>
-                <ArrowUpRight className="h-4 w-4 text-[var(--faint)] opacity-0 transition-opacity group-hover:opacity-100" />
+                <a
+                  href={project.links[0].url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.title} — open ${linkMeta[project.links[0].type].label}`}
+                  className="rounded-md p-1 text-[var(--faint)] opacity-0 transition-all hover:bg-[var(--surface-subtle)] hover:text-[var(--foreground)] focus-visible:opacity-100 group-hover:opacity-100"
+                >
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
               </div>
 
               <h3 className="mt-3 font-[family-name:var(--font-space-grotesk)] text-xl font-semibold text-[var(--foreground)]">
