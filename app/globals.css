@@ -1,25 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  /* Light editorial palette — single blue accent, monochrome base */
-  --background: #fafafa;
-  --surface: #ffffff;
-  --surface-subtle: #f4f4f5;
-  --foreground: #09090b;
-  --muted: #52525b;
-  --faint: #71717a;
-  --border: #e4e4e7;
-  --border-strong: #d4d4d8;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-soft: #eff6ff;
-  --ring: #2563eb;
+  /* ── Royal Black & Gold palette ─────────────────────── */
+  --background: #080808;
+  --surface: #0e0e0c;
+  --surface-subtle: #141410;
+  --surface-elevated: #1a1916;
+  --foreground: #f0ebe0;
+  --muted: #9a9080;
+  --faint: #5c5650;
+  --border: #1e1c16;
+  --border-strong: #2c2a20;
+  --accent: #c9a84c;
+  --accent-hover: #dfc070;
+  --accent-soft: rgba(201, 168, 76, 0.08);
+  --accent-glow: rgba(201, 168, 76, 0.18);
+  --ring: #c9a84c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-subtle: var(--surface-subtle);
+  --color-surface-elevated: var(--surface-elevated);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-faint: var(--faint);
@@ -50,24 +53,24 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Neutral scrollbar */
+/* ── Gold scrollbar ─────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--surface-subtle);
+  background: var(--surface);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--border-strong);
-  border-radius: 6px;
-  border: 2px solid var(--surface-subtle);
+  border-radius: 4px;
+  border: 2px solid var(--surface);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--faint);
+  background: var(--accent);
 }
 
 ::selection {
@@ -75,28 +78,31 @@ body {
   color: var(--accent-hover);
 }
 
-/* ── Editorial utilities ───────────────────────────────── */
+/* ── Editorial utilities ───────────────────────────── */
 
-/* Small uppercase eyebrow label */
+/* Eyebrow: gold mono, all-caps */
 .eyebrow {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
-/* Flat editorial card */
+/* Dark card with gold border on hover */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 0.875rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
 }
 
 .card-hover:hover {
-  border-color: var(--border-strong);
-  box-shadow: 0 1px 2px rgba(9, 9, 11, 0.04), 0 8px 24px rgba(9, 9, 11, 0.06);
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(201, 168, 76, 0.06);
 }
 
 /* Thin section rule */
@@ -106,28 +112,56 @@ body {
   background: var(--border);
 }
 
-/* Tabular figures for any numeric data */
+/* Gold rule */
+.rule-gold {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.4;
+}
+
+/* Tabular figures */
 .tnum {
   font-variant-numeric: tabular-nums;
 }
 
-/* Subtle blue gradient ink for select display words */
-.text-gradient-accent {
-  background: linear-gradient(120deg, var(--accent) 0%, #7c3aed 55%, var(--accent) 100%);
+/* ── Gold shimmer on display text ───────────────────── */
+.text-gradient-gold {
+  background: linear-gradient(
+    90deg,
+    #c9a84c 0%,
+    #f0d88c 30%,
+    #e8c060 55%,
+    #f0d88c 70%,
+    #c9a84c 100%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer-text 6s linear infinite;
+  animation: shimmer-gold 5s linear infinite;
 }
 
-@keyframes shimmer-text {
-  to {
-    background-position: 200% center;
-  }
+@keyframes shimmer-gold {
+  to { background-position: 200% center; }
 }
 
-/* ── Spotlight card: radial highlight follows cursor ───── */
+/* Legacy accent gradient (kept for compat) */
+.text-gradient-accent {
+  background: linear-gradient(
+    90deg,
+    #c9a84c 0%,
+    #f0d88c 40%,
+    #c9a84c 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-gold 5s linear infinite;
+}
+
+/* ── Spotlight card: gold radial follows cursor ──────── */
 .spotlight {
   position: relative;
   overflow: hidden;
@@ -139,11 +173,11 @@ body {
   inset: 0;
   border-radius: inherit;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.35s ease;
   background: radial-gradient(
-    340px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(37, 99, 235, 0.08),
-    transparent 60%
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(201, 168, 76, 0.07),
+    transparent 65%
   );
   pointer-events: none;
 }
@@ -152,11 +186,11 @@ body {
   opacity: 1;
 }
 
-/* ── Marquee tech strip ────────────────────────────────── */
+/* ── Marquee tech strip ──────────────────────────────── */
 .marquee {
   display: flex;
   width: max-content;
-  animation: marquee 38s linear infinite;
+  animation: marquee 40s linear infinite;
 }
 
 .marquee-track:hover .marquee {
@@ -164,36 +198,50 @@ body {
 }
 
 @keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-/* ── Animated gradient mesh (hero) ─────────────────────── */
+/* ── Animated gradient mesh (hero bg orbs) ──────────── */
 @keyframes mesh-a {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(6%, 4%) scale(1.12); }
+  50% { transform: translate(5%, 3%) scale(1.15); }
 }
 @keyframes mesh-b {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-5%, 6%) scale(1.08); }
+  50% { transform: translate(-4%, 7%) scale(1.1); }
 }
 @keyframes mesh-c {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(4%, -5%) scale(1.1); }
+  50% { transform: translate(3%, -4%) scale(1.12); }
 }
-.mesh-a { animation: mesh-a 18s ease-in-out infinite; }
-.mesh-b { animation: mesh-b 22s ease-in-out infinite; }
-.mesh-c { animation: mesh-c 26s ease-in-out infinite; }
+.mesh-a { animation: mesh-a 20s ease-in-out infinite; }
+.mesh-b { animation: mesh-b 26s ease-in-out infinite; }
+.mesh-c { animation: mesh-c 22s ease-in-out infinite; }
 
-/* Respect reduced motion globally */
+/* ── Gold pulse (replaces emerald open-to-work) ──────── */
+@keyframes gold-ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+.gold-ping {
+  animation: gold-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ── Grain overlay ───────────────────────────────────── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;

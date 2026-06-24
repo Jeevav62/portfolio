@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Archivo, Space_Grotesk, Geist_Mono } from "next/font/google";
+import { Playfair_Display, DM_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const archivo = Archivo({
+const dmSans = DM_Sans({
   variable: "--font-archivo",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const playfairDisplay = Playfair_Display({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "900"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#fafafa",
+  themeColor: "#080808",
   width: "device-width",
   initialScale: 1,
 };
@@ -73,7 +74,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${archivo.variable} ${spaceGrotesk.variable} ${geistMono.variable} antialiased bg-[#fafafa] text-[#09090b]`}
+        className={`${dmSans.variable} ${playfairDisplay.variable} ${geistMono.variable} antialiased bg-[#080808] text-[#f0ebe0]`}
       >
         {children}
       </body>
