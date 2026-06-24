@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
-:root {
-  /* ── Royal Black & Gold palette ─────────────────────── */
+/* ── Dark mode (default) ────────────────────────────── */
+:root,
+[data-theme="dark"] {
   --background: #080808;
   --surface: #0e0e0c;
   --surface-subtle: #141410;
@@ -16,6 +17,24 @@
   --accent-soft: rgba(201, 168, 76, 0.08);
   --accent-glow: rgba(201, 168, 76, 0.18);
   --ring: #c9a84c;
+}
+
+/* ── Light mode: warm parchment + darker gold ───────── */
+[data-theme="light"] {
+  --background: #faf8f3;
+  --surface: #ffffff;
+  --surface-subtle: #f3f0e8;
+  --surface-elevated: #ece8de;
+  --foreground: #1c1810;
+  --muted: #6b6257;
+  --faint: #9a9085;
+  --border: #e4dfd3;
+  --border-strong: #cec8ba;
+  --accent: #9a7020;
+  --accent-hover: #b88830;
+  --accent-soft: rgba(154, 112, 32, 0.1);
+  --accent-glow: rgba(154, 112, 32, 0.15);
+  --ring: #9a7020;
 }
 
 @theme inline {
@@ -103,11 +122,18 @@ body {
 }
 
 .card-hover:hover {
-  border-color: rgba(201, 168, 76, 0.35);
+  border-color: var(--border-strong);
   box-shadow:
-    0 0 0 1px rgba(201, 168, 76, 0.08),
+    0 0 0 1px var(--accent-soft),
     0 8px 32px rgba(0, 0, 0, 0.5),
-    0 0 60px rgba(201, 168, 76, 0.06);
+    0 0 60px var(--accent-glow);
+}
+
+[data-theme="light"] .card-hover:hover {
+  box-shadow:
+    0 0 0 1px var(--accent-soft),
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 0 60px var(--accent-glow);
 }
 
 /* Thin section rule */
@@ -149,6 +175,23 @@ body {
 
 @keyframes shimmer-gold {
   to { background-position: 200% center; }
+}
+
+/* Light mode: darker gold shimmer for contrast on parchment */
+[data-theme="light"] .text-gradient-gold,
+[data-theme="light"] .text-gradient-accent {
+  background: linear-gradient(
+    90deg,
+    #7a5510 0%,
+    #b88220 30%,
+    #9a6e18 55%,
+    #c9940a 70%,
+    #7a5510 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Legacy accent gradient (kept for compat) */
