@@ -2,7 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Menu, X, FileText } from "lucide-react";
+import { Menu, X, FileText, Sun, Moon } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -15,6 +16,7 @@ const navItems = [
 ];
 
 export default function Navigation() {
+  const { theme, toggle } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
@@ -96,6 +98,13 @@ export default function Navigation() {
 
           {/* Right actions */}
           <div className="hidden items-center gap-2 md:flex">
+            <button
+              onClick={toggle}
+              aria-label="Toggle theme"
+              className="rounded-lg p-2 text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+            >
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
             <a
               href="/Jeeva-resume.pdf"
               download
@@ -166,6 +175,13 @@ export default function Navigation() {
                   <FileText className="h-4 w-4" />
                   Download Résumé
                 </a>
+                <button
+                  onClick={toggle}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border-strong)] px-4 py-3 text-sm font-medium text-[var(--muted)]"
+                >
+                  {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                  {theme === "dark" ? "Light mode" : "Dark mode"}
+                </button>
                 <button
                   onClick={() => scrollToSection("#contact")}
                   className="rounded-lg bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-[#0a0800]"
