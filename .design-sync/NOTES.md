@@ -18,6 +18,14 @@
 - Archivo, Space Grotesk, Geist Mono — defined via `@font-face` in the compiled CSS
 - Variable CSS custom properties (`--font-archivo`, `--font-space-grotesk`, `--font-geist-mono`) set by Next.js's `next/font` at runtime in the live app, but defined as static values in the compiled CSS — available in the design bundle
 
+## Build command
+
+```bash
+node .ds-sync/package-build.mjs --config .design-sync/config.json --node-modules ./node_modules --out ./ds-bundle --entry ./app/components/ui/index.ts
+```
+
+`--entry` is required because this is a Next.js app (not a library). Without it the converter looks for `node_modules/port/package.json` which doesn't exist.
+
 ## Re-sync risks
 
 - `cssEntry` filename changes on every `next build` — update `cfg.cssEntry` when it does
