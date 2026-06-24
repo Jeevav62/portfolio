@@ -44,9 +44,7 @@ export default function Navigation() {
 
   const scrollToSection = (href: string) => {
     const element = document.getElementById(href.slice(1));
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
     setIsMobileMenuOpen(false);
   };
 
@@ -55,7 +53,7 @@ export default function Navigation() {
       <nav
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "border-b border-[var(--border)] bg-[rgba(250,250,250,0.85)] backdrop-blur-md"
+            ? "border-b border-[var(--border)] bg-[rgba(8,8,8,0.92)] backdrop-blur-md"
             : "border-b border-transparent"
         }`}
       >
@@ -63,13 +61,10 @@ export default function Navigation() {
           {/* Logo */}
           <a
             href="#hero"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#hero");
-            }}
-            className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold tracking-tight text-[var(--foreground)]"
+            onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }}
+            className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold italic tracking-tight text-[var(--foreground)]"
           >
-            JV<span className="text-[var(--accent)]">.</span>
+            JV<span className="text-[var(--accent)] not-italic">.</span>
           </a>
 
           {/* Desktop nav */}
@@ -90,7 +85,7 @@ export default function Navigation() {
                   {isActive && (
                     <motion.span
                       layoutId="activeNav"
-                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-[var(--accent)]"
+                      className="absolute inset-x-3 -bottom-0.5 h-px rounded-full bg-[var(--accent)]"
                       transition={{ type: "spring", stiffness: 350, damping: 30 }}
                     />
                   )}
@@ -111,17 +106,14 @@ export default function Navigation() {
             </a>
             <a
               href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("#contact");
-              }}
-              className="inline-flex rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[var(--accent-hover)]"
+              onClick={(e) => { e.preventDefault(); scrollToSection("#contact"); }}
+              className="inline-flex rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-[#0a0800] transition-all hover:bg-[var(--accent-hover)] hover:shadow-[0_0_20px_rgba(201,168,76,0.35)]"
             >
               Hire Me
             </a>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="rounded-lg p-2 text-[var(--foreground)] md:hidden"
@@ -143,14 +135,14 @@ export default function Navigation() {
             className="fixed inset-0 z-40 md:hidden"
           >
             <div
-              className="absolute inset-0 bg-[rgba(9,9,11,0.3)]"
+              className="absolute inset-0 bg-[rgba(0,0,0,0.7)]"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              className="absolute inset-x-4 top-20 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-lg"
+              className="absolute inset-x-4 top-20 rounded-xl border border-[var(--border-strong)] bg-[var(--surface)] p-4 shadow-2xl"
             >
               <div className="flex flex-col gap-1">
                 {navItems.map((item) => (
@@ -159,7 +151,7 @@ export default function Navigation() {
                     onClick={() => scrollToSection(item.href)}
                     className={`rounded-lg px-4 py-3 text-left text-sm font-medium transition-colors ${
                       activeSection === item.href.slice(1)
-                        ? "bg-[var(--surface-subtle)] text-[var(--foreground)]"
+                        ? "bg-[var(--surface-subtle)] text-[var(--accent)]"
                         : "text-[var(--muted)] hover:bg-[var(--surface-subtle)] hover:text-[var(--foreground)]"
                     }`}
                   >
@@ -176,7 +168,7 @@ export default function Navigation() {
                 </a>
                 <button
                   onClick={() => scrollToSection("#contact")}
-                  className="rounded-lg bg-[var(--accent)] px-4 py-3 text-sm font-medium text-white"
+                  className="rounded-lg bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-[#0a0800]"
                 >
                   Hire Me
                 </button>

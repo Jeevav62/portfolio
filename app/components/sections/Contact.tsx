@@ -209,7 +209,7 @@ export default function Contact() {
                 </div>
 
                 {error && (
-                  <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">
+                  <div className="rounded-lg border border-red-900/50 bg-red-950/40 px-3 py-2 text-sm text-red-400">
                     {error}
                   </div>
                 )}
@@ -217,10 +217,10 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting || isSubmitted}
-                  className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white transition-colors ${
+                  className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all ${
                     isSubmitted
-                      ? "bg-emerald-600"
-                      : "bg-[var(--accent)] hover:bg-[var(--accent-hover)]"
+                      ? "bg-emerald-700 text-white"
+                      : "bg-[var(--accent)] text-[#0a0800] hover:bg-[var(--accent-hover)] hover:shadow-[0_0_20px_rgba(201,168,76,0.35)]"
                   } ${isSubmitting ? "cursor-not-allowed opacity-70" : ""}`}
                 >
                   {isSubmitting ? (

@@ -50,7 +50,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="rounded-lg border border-[var(--border)] p-2.5 text-[var(--muted)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--foreground)]"
+                  className="rounded-lg border border-[var(--border)] p-2.5 text-[var(--muted)] transition-all hover:border-[var(--accent)]/40 hover:text-[var(--accent)] hover:shadow-[0_0_12px_rgba(201,168,76,0.12)]"
                 >
                   <Icon className="h-5 w-5" />
                 </a>
@@ -59,7 +59,7 @@ export default function Footer() {
             <button
               onClick={scrollToTop}
               aria-label="Back to top"
-              className="group rounded-lg border border-[var(--border)] p-2.5 text-[var(--muted)] transition-colors hover:border-[var(--border-strong)] hover:text-[var(--foreground)]"
+              className="group rounded-lg border border-[var(--border)] p-2.5 text-[var(--muted)] transition-all hover:border-[var(--accent)]/40 hover:text-[var(--accent)] hover:shadow-[0_0_12px_rgba(201,168,76,0.12)]"
             >
               <ArrowUp className="h-5 w-5 transition-transform group-hover:-translate-y-0.5" />
             </button>
