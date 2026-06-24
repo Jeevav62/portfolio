@@ -37,6 +37,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Playfair Display loaded via <link> in layout — define the variable here */
+:root {
+  --font-space-grotesk: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
 * {
   box-sizing: border-box;
 }
