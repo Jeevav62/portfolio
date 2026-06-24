@@ -1,0 +1,20 @@
+{
+  "projectId": "b28ee0b2-cfa4-4a3c-881f-ecf47ffc796d",
+  "pkg": "port",
+  "globalName": "JeevaUI",
+  "shape": "package",
+  "srcDir": "app/components/ui",
+  "componentSrcMap": {
+    "Button": "app/components/ui/Button.tsx",
+    "CountUp": "app/components/ui/CountUp.tsx",
+    "Magnetic": "app/components/ui/Magnetic.tsx",
+    "Marquee": "app/components/ui/Marquee.tsx",
+    "SectionHeading": "app/components/ui/SectionHeading.tsx",
+    "SubtleBackground": "app/components/ui/SubtleBackground.tsx"
+  },
+  "cssEntry": "dist/_next/static/chunks/c0760b29d04ff2f0.css",
+  "tsconfig": "tsconfig.json",
+  "overrides": {
+    "CountUp": { "cardMode": "column" }
+  }
+}
