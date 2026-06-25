@@ -55,8 +55,8 @@ const skillCategories = [
     skills: ["Qdrant", "Pinecone", "Milvus", "Zvec", "Neo4j", "Redis", "Supabase", "MySQL"],
   },
   {
-    title: "Search Technologies",
-    skills: ["Meilisearch", "Elasticsearch", "OpenSearch"],
+    title: "Search Technologies and Analytics",
+    skills: ["Meilisearch", "Elasticsearch", "OpenSearch", "Power BI", "Matplotlib", "Seaborn"],
   },
   {
     title: "Backend & Languages",
@@ -79,7 +79,6 @@ const skillCategories = [
       "RunPod",
       "Multi-GPU Training",
       "EasyPanel",
-      "Power BI",
     ],
   },
   {
