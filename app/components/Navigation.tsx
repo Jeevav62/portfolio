@@ -66,7 +66,7 @@ export default function Navigation() {
             onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }}
             className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold italic tracking-tight text-[var(--foreground)]"
           >
-            JV<span className="text-[var(--accent)] not-italic">.</span>
+            JV
           </a>
 
           {/* Desktop nav */}

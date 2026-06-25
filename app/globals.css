@@ -58,7 +58,7 @@
 
 /* Playfair Display loaded via <link> in layout — define the variable here */
 :root {
-  --font-space-grotesk: "Bodoni Moda", Georgia, "Times New Roman", serif;
+  --font-space-grotesk: "Fraunces", Georgia, "Times New Roman", serif;
 }
 
 * {
