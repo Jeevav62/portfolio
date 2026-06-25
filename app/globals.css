@@ -65,6 +65,10 @@
   box-sizing: border-box;
 }
 
+@media (pointer: fine) {
+  html, * { cursor: none !important; }
+}
+
 html {
   scroll-behavior: smooth;
 }
