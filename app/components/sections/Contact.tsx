@@ -163,7 +163,7 @@ export default function Contact() {
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                     className={inputClass}
-                    placeholder="Jane Doe"
+                    placeholder="Your name"
                     required
                   />
                 </div>
@@ -179,7 +179,7 @@ export default function Contact() {
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                     className={inputClass}
-                    placeholder="jane@example.com"
+                    placeholder="your@email.com"
                     required
                   />
                 </div>
