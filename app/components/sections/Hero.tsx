@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, FileDown, MapPin } from "lucide-react";
 import Button from "../ui/Button";
 import Magnetic from "../ui/Magnetic";
@@ -39,6 +39,10 @@ const nameParts = ["Jeevarathinam", "V"];
 
 export default function Hero() {
   const reduce = useReducedMotion();
+  const { scrollY } = useScroll();
+  const orbY1 = useTransform(scrollY, [0, 600], [0, -90]);
+  const orbY2 = useTransform(scrollY, [0, 600], [0, 60]);
+  const orbY3 = useTransform(scrollY, [0, 600], [0, -40]);
   const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
@@ -50,21 +54,21 @@ export default function Hero() {
       {/* Three.js gold particle field */}
       <HeroCanvas />
 
-      {/* Gold gradient orb accents */}
-      <div
+      {/* Gold gradient orb accents — parallax on scroll */}
+      <motion.div
         aria-hidden
         className="mesh-a pointer-events-none absolute -top-[20%] left-[5%] h-[55vh] w-[55vh] rounded-full blur-[120px]"
-        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.16) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.16) 0%, transparent 70%)", y: orbY1 }}
       />
-      <div
+      <motion.div
         aria-hidden
         className="mesh-b pointer-events-none absolute bottom-[-10%] right-[8%] h-[45vh] w-[45vh] rounded-full blur-[100px]"
-        style={{ background: "radial-gradient(circle, rgba(180,100,20,0.12) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(180,100,20,0.12) 0%, transparent 70%)", y: orbY2 }}
       />
-      <div
+      <motion.div
         aria-hidden
         className="mesh-c pointer-events-none absolute top-[30%] left-[45%] h-[40vh] w-[40vh] -translate-x-1/2 rounded-full blur-[130px]"
-        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%)", y: orbY3 }}
       />
 
       <div className="relative z-10 mx-auto w-full max-w-5xl px-6 py-32 sm:px-8 lg:px-12">
