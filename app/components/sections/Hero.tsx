@@ -144,9 +144,9 @@ export default function Hero() {
           animate="show"
           className="mt-6 max-w-xl text-base leading-relaxed text-[var(--muted)] sm:text-lg"
         >
-          I turn frontier AI research into products people actually use — fine-tuning
-          voice and language models, designing retrieval systems, and shipping them
-          end-to-end from prototype to production.
+          I turn frontier AI research into products people actually use. Voice agents
+          that feel natural, retrieval systems that find the right answer, language
+          models that stay grounded when it matters.
         </motion.p>
 
         {/* Tags */}

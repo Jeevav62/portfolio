@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -50,18 +50,15 @@ export default function About() {
             className="space-y-5"
           >
             <p className="text-lg leading-relaxed text-[var(--muted)]">
-              I&apos;m an AI / ML Engineer working across production{" "}
-              <span className="font-medium text-[var(--foreground)]">Voice AI</span>,{" "}
-              <span className="font-medium text-[var(--foreground)]">LLM fine-tuning</span>,
-              retrieval-augmented systems, and open-source AI. I pair deep-learning research with
-              full-stack engineering to ship AI products from prototype to deployment.
+              I read research papers the way some people read news. When something interesting
+              lands on arXiv, I want to know if it actually works, so I build a small version and
+              find out. That habit is how I ended up fine-tuning voice models, merging two of them with task arithmetic to get something better than either alone, and shipping things I never planned to ship.
             </p>
             <p className="text-lg leading-relaxed text-[var(--muted)]">
-              I hold a B.Tech in Artificial Intelligence &amp; Data Science and currently work as
-              an AI Engineer at{" "}
-              <span className="font-medium text-[var(--foreground)]">F22 Labs</span>, where I
-              fine-tune TTS and LLM models, design RAG architectures, and deploy real-time voice
-              agents. What drives me is turning cutting-edge research into things people can use.
+              Outside of work I&apos;m usually tinkering with something, reading about how a model
+              was trained, or convincing myself one more cup of coffee is a good idea. The best way
+              to collaborate with me is to throw a hard problem at me and{" "}
+              <span className="font-medium text-[var(--foreground)]">bring coffee</span>.
             </p>
 
             {/* Facts */}
@@ -82,11 +79,11 @@ export default function About() {
                   Anand Institute of Higher Technology
                 </p>
                 <p className="text-sm text-[var(--muted)]">
-                  B.Tech, Artificial Intelligence &amp; Data Science · CGPA 8.00
+                  B.Tech, Artificial Intelligence &amp; Data Science Â· CGPA 8.00
                 </p>
               </div>
               <span className="font-[family-name:var(--font-geist-mono)] text-sm text-[var(--faint)] tnum">
-                2022 – 2026
+                2022 â€“ 2026
               </span>
             </div>
           </motion.div>
@@ -95,3 +92,4 @@ export default function About() {
     </section>
   );
 }
+
