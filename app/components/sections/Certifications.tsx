@@ -11,47 +11,41 @@ type Cert = {
   title: string;
   issuer: string;
   platform: string;
-  simpleSlug: string;
-  simpleColor: string;
-  logoDomain: string;
+  /** Ordered list of favicon/logo URLs to try. Falls back to letter badge on exhaustion. */
+  logoSources: string[];
   links: CertLink[];
 };
+
+const gf = (domain: string, sz = 128) =>
+  `https://www.google.com/s2/favicons?domain=${domain}&sz=${sz}`;
 
 const certifications: Cert[] = [
   {
     title: "Data Science Professional Certificate",
     issuer: "IBM",
     platform: "Coursera",
-    simpleSlug: "ibm",
-    simpleColor: "0530AD",
-    logoDomain: "ibm.com",
+    logoSources: [gf("ibm.com", 32)], // sz=32 returns classic IBM blue-bar logo
     links: [{ label: "View Certificate", url: "https://coursera.org/share/fbab249e5726597a070b812d2935c0f8" }],
   },
   {
     title: "Crash Course on Python",
     issuer: "Google",
     platform: "Coursera",
-    simpleSlug: "google",
-    simpleColor: "4285F4",
-    logoDomain: "google.com",
+    logoSources: [gf("google.com", 128)],
     links: [{ label: "View Certificate", url: "https://coursera.org/share/b6b667ef8503c2ea666b806b0f8718e3" }],
   },
   {
     title: "AI Primer & Generative AI",
     issuer: "Infosys",
     platform: "Springboard",
-    simpleSlug: "infosys",
-    simpleColor: "007CC2",
-    logoDomain: "infosys.com",
+    logoSources: [gf("infosys.com", 128)],
     links: [{ label: "View Certificate", url: "https://drive.google.com/file/d/1-1nGzZJbOLUXvxRf7HHqjbt3BwBxZtTz/view?usp=sharing" }],
   },
   {
     title: "Programming Fundamentals using Python",
     issuer: "Infosys",
     platform: "Springboard",
-    simpleSlug: "infosys",
-    simpleColor: "007CC2",
-    logoDomain: "infosys.com",
+    logoSources: [gf("infosys.com", 128)],
     links: [
       { label: "Part 1", url: "https://drive.google.com/file/d/1eLys7pvT9mgd4z9xZbyiROIDGP8lwtQr/view?usp=sharing" },
       { label: "Part 2", url: "https://drive.google.com/file/d/1eMiid9FVFABb8GLUMFlZdtC2uQLLj95s/view?usp=sharing" },
@@ -61,45 +55,35 @@ const certifications: Cert[] = [
     title: "Data Analytics Job Simulation",
     issuer: "Deloitte",
     platform: "Forage",
-    simpleSlug: "deloitte",
-    simpleColor: "86BC25",
-    logoDomain: "deloitte.com",
+    logoSources: [gf("deloitte.com", 128)],
     links: [{ label: "View Certificate", url: "https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_jnaFPahnwt8gEpDJD_1747469125355_completion_certificate.pdf" }],
   },
   {
     title: "Power BI for Beginners",
     issuer: "Microsoft",
     platform: "Simplilearn",
-    simpleSlug: "microsoftazure",
-    simpleColor: "0078D4",
-    logoDomain: "microsoft.com",
+    logoSources: [gf("microsoft.com", 128)],
     links: [{ label: "View Certificate", url: "https://simpli-web.app.link/e/ZB4g8HElg4b" }],
   },
   {
     title: "Java Full Stack",
     issuer: "Wipro",
     platform: "TalentNext",
-    simpleSlug: "wipro",
-    simpleColor: "341C78",
-    logoDomain: "wipro.com",
+    logoSources: [gf("wipro.com", 128)],
     links: [{ label: "View Certificate", url: "https://drive.google.com/file/d/1eZcGfVTI4y4Pq5lxfF-C1gkdBPUOCN-9/view?usp=sharing" }],
   },
   {
     title: "Automation Developer Associate",
     issuer: "UiPath",
     platform: "UiPath Academy",
-    simpleSlug: "uipath",
-    simpleColor: "FA4616",
-    logoDomain: "uipath.com",
+    logoSources: [gf("uipath.com", 128)],
     links: [{ label: "View Certificate", url: "https://credentials.uipath.com/1f72d8a6-89ca-45bf-8744-a5ba736c8c2d" }],
   },
   {
     title: "Introduction to Networks",
     issuer: "Cisco",
     platform: "Networking Academy",
-    simpleSlug: "cisco",
-    simpleColor: "1BA0D7",
-    logoDomain: "cisco.com",
+    logoSources: [gf("cisco.com", 128)],
     links: [{ label: "View Certificate", url: "https://drive.google.com/file/d/1eRjf6L7sEzVby4wr4fBOtptEiOc0bAti/view?usp=sharing" }],
   },
 ];
@@ -107,12 +91,7 @@ const certifications: Cert[] = [
 function ProviderLogo({ cert }: { cert: Cert }) {
   const [srcIdx, setSrcIdx] = useState(0);
 
-  const sources = [
-    `https://cdn.simpleicons.org/${cert.simpleSlug}/${cert.simpleColor}`,
-    `https://www.google.com/s2/favicons?domain=${cert.logoDomain}&sz=128`,
-  ];
-
-  if (srcIdx >= sources.length) {
+  if (srcIdx >= cert.logoSources.length) {
     return (
       <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--accent-soft)] text-sm font-bold text-[var(--accent)]">
         {cert.issuer.charAt(0)}
@@ -123,7 +102,7 @@ function ProviderLogo({ cert }: { cert: Cert }) {
   return (
     <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-[var(--border)] bg-white p-2">
       <img
-        src={sources[srcIdx]}
+        src={cert.logoSources[srcIdx]}
         alt={cert.issuer}
         className="h-full w-full object-contain"
         onError={() => setSrcIdx((i) => i + 1)}
