@@ -1,16 +1,7 @@
 "use client";
 
 import { Github, Linkedin, Instagram, Mail, ArrowUp } from "lucide-react";
-
-const HuggingFaceIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
-    <circle cx="9" cy="10.5" r="1.25" fill="currentColor" />
-    <circle cx="15" cy="10.5" r="1.25" fill="currentColor" />
-    <path d="M8.5 15c1 1.5 6 1.5 7 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M7 8.5C7.5 7 9 6.5 9 6.5M17 8.5C16.5 7 15 6.5 15 6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-  </svg>
-);
+import HuggingFaceIcon from "./icons/HuggingFaceIcon";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/Jeevav62", label: "GitHub" },
