@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
 import { ArrowUpRight } from "lucide-react";
@@ -9,6 +10,8 @@ const certifications = [
     title: "Data Science Professional Certificate",
     issuer: "IBM",
     platform: "Coursera",
+    simpleSlug: "ibm",
+    simpleColor: "0530AD",
     logoDomain: "ibm.com",
     url: "https://coursera.org/share/fbab249e5726597a070b812d2935c0f8",
   },
@@ -16,6 +19,8 @@ const certifications = [
     title: "Crash Course on Python",
     issuer: "Google",
     platform: "Coursera",
+    simpleSlug: "google",
+    simpleColor: "4285F4",
     logoDomain: "google.com",
     url: "https://coursera.org/share/b6b667ef8503c2ea666b806b0f8718e3",
   },
@@ -23,6 +28,8 @@ const certifications = [
     title: "AI Primer & Generative AI",
     issuer: "Infosys",
     platform: "Springboard",
+    simpleSlug: "infosys",
+    simpleColor: "007CC2",
     logoDomain: "infosys.com",
     url: "https://drive.google.com/file/d/1-1nGzZJbOLUXvxRf7HHqjbt3BwBxZtTz/view?usp=sharing",
   },
@@ -30,6 +37,8 @@ const certifications = [
     title: "Data Analytics Job Simulation",
     issuer: "Deloitte",
     platform: "Forage",
+    simpleSlug: "deloitte",
+    simpleColor: "86BC25",
     logoDomain: "deloitte.com",
     url: "https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_jnaFPahnwt8gEpDJD_1747469125355_completion_certificate.pdf",
   },
@@ -37,6 +46,8 @@ const certifications = [
     title: "Power BI for Beginners",
     issuer: "Simplilearn",
     platform: "Simplilearn",
+    simpleSlug: "simplilearn",
+    simpleColor: "02A6E2",
     logoDomain: "simplilearn.com",
     url: "https://simpli-web.app.link/e/ZB4g8HElg4b",
   },
@@ -44,6 +55,8 @@ const certifications = [
     title: "Automation Developer Associate",
     issuer: "UiPath",
     platform: "UiPath Academy",
+    simpleSlug: "uipath",
+    simpleColor: "FA4616",
     logoDomain: "uipath.com",
     url: "https://credentials.uipath.com/1f72d8a6-89ca-45bf-8744-a5ba736c8c2d",
   },
@@ -51,32 +64,38 @@ const certifications = [
     title: "Introduction to Networks",
     issuer: "Cisco",
     platform: "Networking Academy",
+    simpleSlug: "cisco",
+    simpleColor: "1BA0D7",
     logoDomain: "cisco.com",
     url: "https://drive.google.com/file/d/1eRjf6L7sEzVby4wr4fBOtptEiOc0bAti/view?usp=sharing",
   },
 ];
 
-function ProviderLogo({ domain, issuer }: { domain: string; issuer: string }) {
+type Cert = (typeof certifications)[number];
+
+function ProviderLogo({ cert }: { cert: Cert }) {
+  const [srcIdx, setSrcIdx] = useState(0);
+
+  const sources = [
+    `https://cdn.simpleicons.org/${cert.simpleSlug}/${cert.simpleColor}`,
+    `https://www.google.com/s2/favicons?domain=${cert.logoDomain}&sz=128`,
+  ];
+
+  if (srcIdx >= sources.length) {
+    return (
+      <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--accent-soft)] text-sm font-bold text-[var(--accent)]">
+        {cert.issuer.charAt(0)}
+      </div>
+    );
+  }
+
   return (
-    <div className="relative flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[var(--border)] bg-white">
+    <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-[var(--border)] bg-white p-2">
       <img
-        src={`https://www.google.com/s2/favicons?domain=${domain}&sz=128`}
-        alt={issuer}
-        width={32}
-        height={32}
-        className="h-8 w-8 object-contain"
-        onError={(e) => {
-          const img = e.currentTarget;
-          img.style.display = "none";
-          const parent = img.parentElement;
-          if (parent) {
-            const el = document.createElement("span");
-            el.textContent = issuer.charAt(0);
-            el.className = "text-sm font-bold text-[var(--accent)]";
-            parent.appendChild(el);
-            parent.style.background = "var(--accent-soft)";
-          }
-        }}
+        src={sources[srcIdx]}
+        alt={cert.issuer}
+        className="h-full w-full object-contain"
+        onError={() => setSrcIdx((i) => i + 1)}
       />
     </div>
   );
@@ -112,7 +131,7 @@ export default function Certifications() {
             >
               {/* Provider header */}
               <div className="flex items-center gap-3">
-                <ProviderLogo domain={cert.logoDomain} issuer={cert.issuer} />
+                <ProviderLogo cert={cert} />
                 <div>
                   <p className="text-sm font-semibold text-[var(--foreground)]">{cert.issuer}</p>
                   <p className="font-[family-name:var(--font-geist-mono)] text-xs text-[var(--faint)]">
@@ -127,7 +146,7 @@ export default function Certifications() {
               </h3>
 
               {/* View link */}
-              <div className="flex items-center gap-1 font-[family-name:var(--font-geist-mono)] text-xs text-[var(--accent)] transition-gap group-hover:gap-2">
+              <div className="flex items-center gap-1 font-[family-name:var(--font-geist-mono)] text-xs text-[var(--accent)]">
                 <span>View Certificate</span>
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </div>
