@@ -56,6 +56,32 @@ const certifications = [
   },
 ];
 
+function ProviderLogo({ domain, issuer }: { domain: string; issuer: string }) {
+  return (
+    <div className="relative flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[var(--border)] bg-white">
+      <img
+        src={`https://www.google.com/s2/favicons?domain=${domain}&sz=128`}
+        alt={issuer}
+        width={32}
+        height={32}
+        className="h-8 w-8 object-contain"
+        onError={(e) => {
+          const img = e.currentTarget;
+          img.style.display = "none";
+          const parent = img.parentElement;
+          if (parent) {
+            const el = document.createElement("span");
+            el.textContent = issuer.charAt(0);
+            el.className = "text-sm font-bold text-[var(--accent)]";
+            parent.appendChild(el);
+            parent.style.background = "var(--accent-soft)";
+          }
+        }}
+      />
+    </div>
+  );
+}
+
 export default function Certifications() {
   return (
     <section id="certifications" className="relative px-6 py-24 sm:px-8 md:py-32 lg:px-12">
@@ -66,7 +92,7 @@ export default function Certifications() {
           subtitle="Verified coursework across data science, generative AI, and engineering fundamentals."
         />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, index) => (
             <motion.a
               key={cert.title}
@@ -76,7 +102,7 @@ export default function Certifications() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.45, delay: (index % 4) * 0.05 }}
+              transition={{ duration: 0.45, delay: (index % 3) * 0.05 }}
               onMouseMove={(e) => {
                 const r = e.currentTarget.getBoundingClientRect();
                 e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
@@ -84,38 +110,26 @@ export default function Certifications() {
               }}
               className="spotlight card card-hover group flex flex-col gap-4 p-5"
             >
-              {/* Provider logo */}
-              <div className="flex items-center justify-between">
-                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg border border-[var(--border)] bg-white p-1.5">
-                  <img
-                    src={`https://logo.clearbit.com/${cert.logoDomain}`}
-                    alt={cert.issuer}
-                    width={28}
-                    height={28}
-                    className="h-7 w-7 object-contain"
-                    onError={(e) => {
-                      const target = e.currentTarget as HTMLImageElement;
-                      target.style.display = "none";
-                      const parent = target.parentElement;
-                      if (parent) {
-                        parent.textContent = cert.issuer.charAt(0);
-                        parent.className =
-                          "flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent-soft)] font-bold text-[var(--accent)]";
-                      }
-                    }}
-                  />
+              {/* Provider header */}
+              <div className="flex items-center gap-3">
+                <ProviderLogo domain={cert.logoDomain} issuer={cert.issuer} />
+                <div>
+                  <p className="text-sm font-semibold text-[var(--foreground)]">{cert.issuer}</p>
+                  <p className="font-[family-name:var(--font-geist-mono)] text-xs text-[var(--faint)]">
+                    {cert.platform}
+                  </p>
                 </div>
-                <ArrowUpRight className="h-4 w-4 text-[var(--faint)] opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
 
-              {/* Cert info */}
-              <div className="flex-1">
-                <h3 className="text-sm font-semibold leading-snug text-[var(--foreground)]">
-                  {cert.title}
-                </h3>
-                <p className="mt-1.5 font-[family-name:var(--font-geist-mono)] text-xs text-[var(--faint)]">
-                  {cert.issuer} &middot; {cert.platform}
-                </p>
+              {/* Cert title */}
+              <h3 className="flex-1 text-sm font-semibold leading-snug text-[var(--foreground)]">
+                {cert.title}
+              </h3>
+
+              {/* View link */}
+              <div className="flex items-center gap-1 font-[family-name:var(--font-geist-mono)] text-xs text-[var(--accent)] transition-gap group-hover:gap-2">
+                <span>View Certificate</span>
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </div>
             </motion.a>
           ))}
