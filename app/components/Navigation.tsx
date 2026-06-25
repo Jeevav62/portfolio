@@ -55,7 +55,7 @@ export default function Navigation() {
       <nav
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "border-b border-[var(--border)] bg-[rgba(8,8,8,0.92)] backdrop-blur-md"
+            ? `border-b border-[var(--border)] backdrop-blur-md ${theme === "light" ? "bg-[rgba(250,248,243,0.92)]" : "bg-[rgba(8,8,8,0.92)]"}`
             : "border-b border-transparent"
         }`}
       >
@@ -64,7 +64,7 @@ export default function Navigation() {
           <a
             href="#hero"
             onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }}
-            className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold tracking-tight text-[var(--foreground)]"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--accent)]/50 bg-[var(--accent-soft)] font-[family-name:var(--font-space-grotesk)] text-sm font-bold tracking-tight text-[var(--accent)] shadow-[0_0_0_3px_var(--accent-soft),0_0_14px_var(--accent-glow)] transition-shadow hover:shadow-[0_0_0_3px_var(--accent-soft),0_0_24px_var(--accent-glow)]"
           >
             JV
           </a>
