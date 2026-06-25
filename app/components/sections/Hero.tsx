@@ -86,7 +86,7 @@ export default function Hero() {
 
         {/* Name: Cormorant Garamond, per-char stagger reveal */}
         <motion.h1
-          className="mt-6 font-[family-name:var(--font-space-grotesk)] text-5xl font-bold italic leading-[1.05] tracking-tight sm:text-6xl md:text-[5.5rem]"
+          className="mt-6 font-[family-name:var(--font-space-grotesk)] text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl md:text-[5.5rem]"
           style={{ filter: "drop-shadow(0 0 48px rgba(201,168,76,0.18))" }}
           whileHover={{ filter: "drop-shadow(0 0 64px rgba(201,168,76,0.32))" }}
           transition={{ duration: 0.4 }}

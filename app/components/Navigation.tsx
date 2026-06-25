@@ -64,7 +64,7 @@ export default function Navigation() {
           <a
             href="#hero"
             onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }}
-            className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold italic tracking-tight text-[var(--foreground)]"
+            className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold tracking-tight text-[var(--foreground)]"
           >
             JV
           </a>
