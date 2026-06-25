@@ -16,8 +16,6 @@ const skillCategories = [
       "Hybrid RAG",
       "GraphRAG",
       "Task Arithmetic",
-      "vLLM",
-      "llama.cpp",
       "Hugging Face Hub",
       "AI Agents",
     ],
@@ -37,6 +35,10 @@ const skillCategories = [
     title: "Frameworks & Libraries",
     skills: [
       "PyTorch",
+      "TorchForce",
+      "ExecuTorch",
+      "vLLM",
+      "llama.cpp",
       "LangChain",
       "LlamaIndex",
       "LangGraph",
@@ -44,7 +46,6 @@ const skillCategories = [
       "HF Transformers",
       "PEFT / LoRA / DDP",
       "scikit-learn",
-      "Pandas / NumPy",
       "Gradio",
     ],
   },
@@ -75,6 +76,10 @@ const skillCategories = [
       "EasyPanel",
       "Power BI",
     ],
+  },
+  {
+    title: "CLI Tools",
+    skills: ["Claude Code", "Pi", "Codex"],
   },
 ];
 
