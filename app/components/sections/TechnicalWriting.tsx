@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, TrendingUp } from "lucide-react";
 
 const articles = [
   {
@@ -14,6 +14,7 @@ const articles = [
     date: "Apr 2026",
     readTime: "6 min read",
     category: "Vector Databases",
+    rank: "#2 · US & India",
   },
   {
     id: "2",
@@ -34,6 +35,7 @@ const articles = [
     date: "2025",
     readTime: "8 min read",
     category: "Prompt Engineering",
+    rank: "#1 · US & India",
   },
   {
     id: "4",
@@ -85,6 +87,15 @@ function ArticleCard({
       }`}
       aria-label={isComingSoon ? `${article.title} (coming soon)` : article.title}
     >
+      {"rank" in article && article.rank && (
+        <div className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-[var(--accent)]/40 bg-[var(--accent-soft)] px-3 py-1">
+          <TrendingUp className="h-3 w-3 text-[var(--accent)]" />
+          <span className="font-[family-name:var(--font-geist-mono)] text-[10px] font-bold uppercase tracking-widest text-[var(--accent)]">
+            Ranking {article.rank}
+          </span>
+        </div>
+      )}
+
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="eyebrow">{article.category}</span>
