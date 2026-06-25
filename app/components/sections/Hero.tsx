@@ -92,11 +92,11 @@ export default function Hero() {
           transition={{ duration: 0.4 }}
         >
           {nameParts.map((word, wi) => (
-            <span key={wi} className="mr-[0.32em] inline-block pb-1 align-bottom">
+            <span key={wi} className="mr-[0.32em] inline-block pb-2 align-bottom text-gradient-gold">
               {Array.from(word).map((char, ci) => (
                 <motion.span
                   key={ci}
-                  className="inline-block text-gradient-gold"
+                  className="inline-block"
                   initial={reduce ? false : { opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
