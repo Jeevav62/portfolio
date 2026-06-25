@@ -6,6 +6,17 @@ import { ArrowUpRight, TrendingUp } from "lucide-react";
 
 const articles = [
   {
+    id: "3",
+    title: "Reflection Prompting: Why One Prompt Is Not Enough",
+    excerpt:
+      "Explore the power of reflection prompting techniques to improve LLM outputs through iterative refinement and self-correction mechanisms.",
+    url: "https://www.f22labs.com/blogs/reflection-prompting-explained-why-one-prompt-is-not-enough/",
+    date: "2025",
+    readTime: "8 min read",
+    category: "Prompt Engineering",
+    rank: "#1 · US & India",
+  },
+  {
     id: "1",
     title: "Zvec vs Qdrant vs Milvus: Vector Database Comparison for RAG",
     excerpt:
@@ -25,17 +36,6 @@ const articles = [
     date: "Apr 2026",
     readTime: "7 min read",
     category: "LLM Optimization",
-  },
-  {
-    id: "3",
-    title: "Reflection Prompting: Why One Prompt Is Not Enough",
-    excerpt:
-      "Explore the power of reflection prompting techniques to improve LLM outputs through iterative refinement and self-correction mechanisms.",
-    url: "https://www.f22labs.com/blogs/reflection-prompting-explained-why-one-prompt-is-not-enough/",
-    date: "2025",
-    readTime: "8 min read",
-    category: "Prompt Engineering",
-    rank: "#1 · US & India",
   },
   {
     id: "4",
@@ -88,7 +88,7 @@ function ArticleCard({
       aria-label={isComingSoon ? `${article.title} (coming soon)` : article.title}
     >
       {"rank" in article && article.rank && (
-        <div className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-[var(--accent)]/40 bg-[var(--accent-soft)] px-3 py-1">
+        <div className="mb-3 flex w-fit items-center gap-1.5 rounded-full border border-[var(--accent)]/40 bg-[var(--accent-soft)] px-3 py-1">
           <TrendingUp className="h-3 w-3 text-[var(--accent)]" />
           <span className="font-[family-name:var(--font-geist-mono)] text-[10px] font-bold uppercase tracking-widest text-[var(--accent)]">
             Ranking {article.rank}
