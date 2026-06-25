@@ -78,7 +78,7 @@ export default function About() {
                   Anand Institute of Higher Technology
                 </p>
                 <p className="text-sm text-[var(--muted)]">
-                  B.Tech, Artificial Intelligence &amp; Data Science &middot; CGPA 8.00
+                  B.Tech, Artificial Intelligence &amp; Data Science &middot; CGPA 8.4
                 </p>
               </div>
               <span className="font-[family-name:var(--font-geist-mono)] text-sm text-[var(--faint)] tnum">
