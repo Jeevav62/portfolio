@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
+import CustomCursor from "./components/ui/CustomCursor";
+import ScrollProgress from "./components/ui/ScrollProgress";
 
 const dmSans = DM_Sans({
   variable: "--font-archivo",
@@ -77,7 +79,11 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <CustomCursor />
+          <ScrollProgress />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
