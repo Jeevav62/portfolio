@@ -13,6 +13,9 @@ type Cert = {
   platform: string;
   /** Ordered list of favicon/logo URLs to try. Falls back to letter badge on exhaustion. */
   logoSources: string[];
+  /** If set, render a styled text badge instead of fetching an image (for logos with CDN issues). */
+  logoText?: string;
+  logoBg?: string;
   links: CertLink[];
 };
 
@@ -24,7 +27,9 @@ const certifications: Cert[] = [
     title: "Data Science Professional Certificate",
     issuer: "IBM",
     platform: "Coursera",
-    logoSources: [gf("ibm.com", 32)], // sz=32 returns classic IBM blue-bar logo
+    logoSources: [],
+    logoText: "IBM",
+    logoBg: "#1F70C1",
     links: [{ label: "View Certificate", url: "https://coursera.org/share/fbab249e5726597a070b812d2935c0f8" }],
   },
   {
@@ -90,6 +95,17 @@ const certifications: Cert[] = [
 
 function ProviderLogo({ cert }: { cert: Cert }) {
   const [srcIdx, setSrcIdx] = useState(0);
+
+  if (cert.logoText) {
+    return (
+      <div
+        className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl text-xs font-black tracking-widest text-white"
+        style={{ backgroundColor: cert.logoBg ?? "#555" }}
+      >
+        {cert.logoText}
+      </div>
+    );
+  }
 
   if (srcIdx >= cert.logoSources.length) {
     return (
