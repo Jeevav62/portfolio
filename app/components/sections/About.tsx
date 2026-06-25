@@ -57,8 +57,7 @@ export default function About() {
             <p className="text-lg leading-relaxed text-[var(--muted)]">
               Outside of work I&apos;m usually tinkering with something, reading about how a model
               was trained, or convincing myself one more cup of coffee is a good idea. The best way
-              to collaborate with me is to throw a hard problem at me and{" "}
-              <span className="font-medium text-[var(--foreground)]">bring coffee</span>.
+              to collaborate with me is to throw a hard problem at me and bring coffee.
             </p>
 
             {/* Facts */}
@@ -92,4 +91,5 @@ export default function About() {
     </section>
   );
 }
+
 
