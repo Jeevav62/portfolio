@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
 import SectionHeading from "../ui/SectionHeading";
+import TiltCard from "../ui/TiltCard";
 
 const HuggingFaceIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -101,8 +102,8 @@ export default function Projects() {
 
         <div className="grid gap-5 md:grid-cols-2">
           {projects.map((project, i) => (
+            <TiltCard key={project.id} maxTilt={6}>
             <motion.div
-              key={project.id}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -165,6 +166,7 @@ export default function Projects() {
                 })}
               </div>
             </motion.div>
+            </TiltCard>
           ))}
         </div>
       </div>
