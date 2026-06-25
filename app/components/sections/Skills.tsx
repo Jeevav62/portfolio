@@ -35,10 +35,7 @@ const skillCategories = [
     title: "Frameworks & Libraries",
     skills: [
       "PyTorch",
-      "TorchForce",
-      "ExecuTorch",
-      "vLLM",
-      "llama.cpp",
+      "Tensorforce",
       "LangChain",
       "LlamaIndex",
       "LangGraph",
@@ -50,8 +47,16 @@ const skillCategories = [
     ],
   },
   {
+    title: "Inference Frameworks",
+    skills: ["llama.cpp", "vLLM", "ExecuTorch", "TensorRT-LLM", "SGLang"],
+  },
+  {
     title: "Databases & Vector Stores",
-    skills: ["Qdrant", "Neo4j", "Redis", "Supabase", "MySQL"],
+    skills: ["Qdrant", "Pinecone", "Milvus", "Zvec", "Neo4j", "Redis", "Supabase", "MySQL"],
+  },
+  {
+    title: "Search Technologies",
+    skills: ["Meilisearch", "Elasticsearch", "OpenSearch"],
   },
   {
     title: "Backend & Languages",
@@ -79,7 +84,7 @@ const skillCategories = [
   },
   {
     title: "CLI Tools",
-    skills: ["Claude Code", "Pi", "Codex"],
+    skills: ["Claude Code", "Claude Skills", "Kimi Code", "Codex", "Pi"],
   },
 ];
 
