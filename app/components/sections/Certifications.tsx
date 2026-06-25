@@ -1,9 +1,12 @@
 "use client";
 
+import type { FC } from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
 import { ArrowUpRight } from "lucide-react";
+import IBMIcon from "../icons/IBMIcon";
+import InfosysIcon from "../icons/InfosysIcon";
 
 type CertLink = { label: string; url: string };
 
@@ -16,6 +19,8 @@ type Cert = {
   /** If set, render a styled text badge instead of fetching an image (for logos with CDN issues). */
   logoText?: string;
   logoBg?: string;
+  /** If set, renders an inline SVG component instead of fetching a logo. */
+  logoComponent?: FC<{ className?: string }>;
   links: CertLink[];
 };
 
@@ -28,8 +33,7 @@ const certifications: Cert[] = [
     issuer: "IBM",
     platform: "Coursera",
     logoSources: [],
-    logoText: "IBM",
-    logoBg: "#1F70C1",
+    logoComponent: IBMIcon,
     links: [{ label: "View Certificate", url: "https://coursera.org/share/fbab249e5726597a070b812d2935c0f8" }],
   },
   {
@@ -43,14 +47,16 @@ const certifications: Cert[] = [
     title: "AI Primer & Generative AI",
     issuer: "Infosys",
     platform: "Springboard",
-    logoSources: [gf("infosys.com", 128)],
+    logoSources: [],
+    logoComponent: InfosysIcon,
     links: [{ label: "View Certificate", url: "https://drive.google.com/file/d/1-1nGzZJbOLUXvxRf7HHqjbt3BwBxZtTz/view?usp=sharing" }],
   },
   {
     title: "Programming Fundamentals using Python",
     issuer: "Infosys",
     platform: "Springboard",
-    logoSources: [gf("infosys.com", 128)],
+    logoSources: [],
+    logoComponent: InfosysIcon,
     links: [
       { label: "Part 1", url: "https://drive.google.com/file/d/1eLys7pvT9mgd4z9xZbyiROIDGP8lwtQr/view?usp=sharing" },
       { label: "Part 2", url: "https://drive.google.com/file/d/1eMiid9FVFABb8GLUMFlZdtC2uQLLj95s/view?usp=sharing" },
@@ -95,6 +101,15 @@ const certifications: Cert[] = [
 
 function ProviderLogo({ cert }: { cert: Cert }) {
   const [srcIdx, setSrcIdx] = useState(0);
+
+  if (cert.logoComponent) {
+    const Logo = cert.logoComponent;
+    return (
+      <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-[var(--border)] bg-white p-1">
+        <Logo className="h-full w-full" />
+      </div>
+    );
+  }
 
   if (cert.logoText) {
     return (
