@@ -5,7 +5,19 @@ import { motion } from "framer-motion";
 import SectionHeading from "../ui/SectionHeading";
 import { ArrowUpRight } from "lucide-react";
 
-const certifications = [
+type CertLink = { label: string; url: string };
+
+type Cert = {
+  title: string;
+  issuer: string;
+  platform: string;
+  simpleSlug: string;
+  simpleColor: string;
+  logoDomain: string;
+  links: CertLink[];
+};
+
+const certifications: Cert[] = [
   {
     title: "Data Science Professional Certificate",
     issuer: "IBM",
@@ -13,7 +25,7 @@ const certifications = [
     simpleSlug: "ibm",
     simpleColor: "0530AD",
     logoDomain: "ibm.com",
-    url: "https://coursera.org/share/fbab249e5726597a070b812d2935c0f8",
+    links: [{ label: "View Certificate", url: "https://coursera.org/share/fbab249e5726597a070b812d2935c0f8" }],
   },
   {
     title: "Crash Course on Python",
@@ -22,7 +34,7 @@ const certifications = [
     simpleSlug: "google",
     simpleColor: "4285F4",
     logoDomain: "google.com",
-    url: "https://coursera.org/share/b6b667ef8503c2ea666b806b0f8718e3",
+    links: [{ label: "View Certificate", url: "https://coursera.org/share/b6b667ef8503c2ea666b806b0f8718e3" }],
   },
   {
     title: "AI Primer & Generative AI",
@@ -31,7 +43,19 @@ const certifications = [
     simpleSlug: "infosys",
     simpleColor: "007CC2",
     logoDomain: "infosys.com",
-    url: "https://drive.google.com/file/d/1-1nGzZJbOLUXvxRf7HHqjbt3BwBxZtTz/view?usp=sharing",
+    links: [{ label: "View Certificate", url: "https://drive.google.com/file/d/1-1nGzZJbOLUXvxRf7HHqjbt3BwBxZtTz/view?usp=sharing" }],
+  },
+  {
+    title: "Programming Fundamentals using Python",
+    issuer: "Infosys",
+    platform: "Springboard",
+    simpleSlug: "infosys",
+    simpleColor: "007CC2",
+    logoDomain: "infosys.com",
+    links: [
+      { label: "Part 1", url: "https://drive.google.com/file/d/1eLys7pvT9mgd4z9xZbyiROIDGP8lwtQr/view?usp=sharing" },
+      { label: "Part 2", url: "https://drive.google.com/file/d/1eMiid9FVFABb8GLUMFlZdtC2uQLLj95s/view?usp=sharing" },
+    ],
   },
   {
     title: "Data Analytics Job Simulation",
@@ -40,16 +64,25 @@ const certifications = [
     simpleSlug: "deloitte",
     simpleColor: "86BC25",
     logoDomain: "deloitte.com",
-    url: "https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_jnaFPahnwt8gEpDJD_1747469125355_completion_certificate.pdf",
+    links: [{ label: "View Certificate", url: "https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_jnaFPahnwt8gEpDJD_1747469125355_completion_certificate.pdf" }],
   },
   {
     title: "Power BI for Beginners",
-    issuer: "Simplilearn",
+    issuer: "Microsoft",
     platform: "Simplilearn",
-    simpleSlug: "simplilearn",
-    simpleColor: "02A6E2",
-    logoDomain: "simplilearn.com",
-    url: "https://simpli-web.app.link/e/ZB4g8HElg4b",
+    simpleSlug: "microsoftazure",
+    simpleColor: "0078D4",
+    logoDomain: "microsoft.com",
+    links: [{ label: "View Certificate", url: "https://simpli-web.app.link/e/ZB4g8HElg4b" }],
+  },
+  {
+    title: "Java Full Stack",
+    issuer: "Wipro",
+    platform: "TalentNext",
+    simpleSlug: "wipro",
+    simpleColor: "341C78",
+    logoDomain: "wipro.com",
+    links: [{ label: "View Certificate", url: "https://drive.google.com/file/d/1eZcGfVTI4y4Pq5lxfF-C1gkdBPUOCN-9/view?usp=sharing" }],
   },
   {
     title: "Automation Developer Associate",
@@ -58,7 +91,7 @@ const certifications = [
     simpleSlug: "uipath",
     simpleColor: "FA4616",
     logoDomain: "uipath.com",
-    url: "https://credentials.uipath.com/1f72d8a6-89ca-45bf-8744-a5ba736c8c2d",
+    links: [{ label: "View Certificate", url: "https://credentials.uipath.com/1f72d8a6-89ca-45bf-8744-a5ba736c8c2d" }],
   },
   {
     title: "Introduction to Networks",
@@ -67,11 +100,9 @@ const certifications = [
     simpleSlug: "cisco",
     simpleColor: "1BA0D7",
     logoDomain: "cisco.com",
-    url: "https://drive.google.com/file/d/1eRjf6L7sEzVby4wr4fBOtptEiOc0bAti/view?usp=sharing",
+    links: [{ label: "View Certificate", url: "https://drive.google.com/file/d/1eRjf6L7sEzVby4wr4fBOtptEiOc0bAti/view?usp=sharing" }],
   },
 ];
-
-type Cert = (typeof certifications)[number];
 
 function ProviderLogo({ cert }: { cert: Cert }) {
   const [srcIdx, setSrcIdx] = useState(0);
@@ -113,11 +144,8 @@ export default function Certifications() {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, index) => (
-            <motion.a
+            <motion.div
               key={cert.title}
-              href={cert.url}
-              target="_blank"
-              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -145,12 +173,23 @@ export default function Certifications() {
                 {cert.title}
               </h3>
 
-              {/* View link */}
-              <div className="flex items-center gap-1 font-[family-name:var(--font-geist-mono)] text-xs text-[var(--accent)]">
-                <span>View Certificate</span>
-                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              {/* Link(s) */}
+              <div className="flex items-center gap-3">
+                {cert.links.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1 font-[family-name:var(--font-geist-mono)] text-xs text-[var(--accent)] transition-opacity hover:opacity-70"
+                  >
+                    <span>{link.label}</span>
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
+                ))}
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </div>
       </div>
