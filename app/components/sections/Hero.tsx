@@ -53,13 +53,18 @@ export default function Hero() {
       {/* Gold gradient orb accents */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-[20%] left-[5%] h-[55vh] w-[55vh] rounded-full blur-[120px]"
-        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.14) 0%, transparent 70%)" }}
+        className="mesh-a pointer-events-none absolute -top-[20%] left-[5%] h-[55vh] w-[55vh] rounded-full blur-[120px]"
+        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.16) 0%, transparent 70%)" }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute bottom-[-10%] right-[8%] h-[45vh] w-[45vh] rounded-full blur-[100px]"
-        style={{ background: "radial-gradient(circle, rgba(180,100,20,0.1) 0%, transparent 70%)" }}
+        className="mesh-b pointer-events-none absolute bottom-[-10%] right-[8%] h-[45vh] w-[45vh] rounded-full blur-[100px]"
+        style={{ background: "radial-gradient(circle, rgba(180,100,20,0.12) 0%, transparent 70%)" }}
+      />
+      <div
+        aria-hidden
+        className="mesh-c pointer-events-none absolute top-[30%] left-[45%] h-[40vh] w-[40vh] -translate-x-1/2 rounded-full blur-[130px]"
+        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%)" }}
       />
 
       <div className="relative z-10 mx-auto w-full max-w-5xl px-6 py-32 sm:px-8 lg:px-12">
@@ -79,21 +84,46 @@ export default function Hero() {
           Open to AI / ML Engineering roles
         </motion.span>
 
-        {/* Name: Playfair Display, gold shimmer per-word reveal */}
-        <h1 className="mt-6 font-[family-name:var(--font-space-grotesk)] text-5xl font-bold italic leading-[1.0] tracking-tight sm:text-6xl md:text-[5.5rem]">
-          {nameParts.map((word, i) => (
-            <span key={i} className="mr-[0.3em] inline-block overflow-hidden align-bottom">
-              <motion.span
-                className="inline-block text-gradient-gold"
-                initial={reduce ? false : { y: "110%" }}
-                animate={{ y: 0 }}
-                transition={{ delay: 0.2 + i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {word}
-              </motion.span>
+        {/* Name: Cormorant Garamond, per-char stagger reveal */}
+        <motion.h1
+          className="mt-6 font-[family-name:var(--font-space-grotesk)] text-5xl font-bold italic leading-[1.05] tracking-tight sm:text-6xl md:text-[5.5rem]"
+          style={{ filter: "drop-shadow(0 0 48px rgba(201,168,76,0.18))" }}
+          whileHover={{ filter: "drop-shadow(0 0 64px rgba(201,168,76,0.32))" }}
+          transition={{ duration: 0.4 }}
+        >
+          {nameParts.map((word, wi) => (
+            <span key={wi} className="mr-[0.32em] inline-block pb-1 align-bottom">
+              {Array.from(word).map((char, ci) => (
+                <motion.span
+                  key={ci}
+                  className="inline-block text-gradient-gold"
+                  initial={reduce ? false : { opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: 0.1 + wi * (Array.from(nameParts[0]).length * 0.035 + 0.06) + ci * 0.035,
+                    duration: 0.45,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
             </span>
           ))}
-        </h1>
+        </motion.h1>
+
+        {/* Ornament divider */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ delay: 0.9, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-4 flex items-center gap-3"
+          style={{ transformOrigin: "left center" }}
+        >
+          <div className="h-px w-10 bg-gradient-to-r from-transparent to-[var(--accent)] opacity-60" />
+          <div className="h-1 w-1 rotate-45 bg-[var(--accent)] opacity-70" />
+          <div className="h-px flex-1 max-w-[60px] bg-gradient-to-r from-[var(--accent)] to-transparent opacity-30" />
+        </motion.div>
 
         {/* Role */}
         <motion.p
@@ -101,19 +131,10 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="mt-5 font-[family-name:var(--font-geist-mono)] text-sm uppercase tracking-[0.22em] text-[var(--accent)]"
+          className="mt-4 font-[family-name:var(--font-geist-mono)] text-sm uppercase tracking-[0.22em] text-[var(--accent)]"
         >
           AI / ML Engineer
         </motion.p>
-
-        {/* Horizontal gold rule */}
-        <motion.div
-          custom={3.5}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="mt-5 h-px w-16 bg-[var(--accent)] opacity-50"
-        />
 
         {/* Bio */}
         <motion.p
