@@ -25,15 +25,7 @@ export default function SectionHeading({
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={`mb-12 flex flex-col gap-3 ${alignCls} ${align === "center" ? "max-w-2xl" : ""}`}
     >
-      {eyebrow && (
-        <span className={`inline-flex items-center gap-2.5 ${align === "center" ? "justify-center" : ""}`}>
-          <span className="h-px w-7 bg-gradient-to-r from-[var(--accent)] to-transparent opacity-70" />
-          <span className="eyebrow">{eyebrow}</span>
-          {align === "center" && (
-            <span className="h-px w-7 bg-gradient-to-l from-[var(--accent)] to-transparent opacity-70" />
-          )}
-        </span>
-      )}
+      {eyebrow && <span className="eyebrow">{eyebrow}</span>}
       <h2 className="font-[family-name:var(--font-space-grotesk)] text-[2rem] md:text-[2.75rem] font-semibold leading-[1.1] tracking-[-0.02em] text-[var(--foreground)]">
         {title}
       </h2>
