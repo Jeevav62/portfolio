@@ -13,7 +13,7 @@ const experiences = [
     description: [
       "Authored 95+ technical POC research documents; evaluated 20+ TTS/STT/LLM/OCR models contributing to internal TTS Leaderboard.",
       "Fine-tuned 3 production TTS models (Kokoro-82M, XTTS-v2, VoxCPM) reducing WER from 60% to 22% and improving NISQA MOS by 18%.",
-      "Fine-tuned LFM 2.5 1.2B instruct LLM via vLLM on multi-GPU server; deployed full STT + LLM + TTS pipeline into LiveKit as production voice AI agent.",
+      "Fine-tuned LFM2.5-1.2B Instruct LLM on a multi-GPU server and served it via vLLM; deployed full STT + LLM + TTS pipeline into LiveKit as a production voice AI agent.",
       "Designed production Hybrid RAG architecture (Qdrant dense retrieval + Groq LLM reranking) achieving ~500ms avg / ~800ms p90 latency; implemented GraphRAG over Neo4j.",
       "Benchmarked Zvec, Qdrant, and Milvus on RAG retrieval accuracy and latency. Zvec fastest with highest recall; published findings on F22 Labs engineering blog.",
       "Researched Task Arithmetic for TTS model merging. Combined 2 fine-tuned Kokoro models in shared weight space without retraining, achieving 55% listener preference.",

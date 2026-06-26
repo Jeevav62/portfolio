@@ -51,8 +51,8 @@ const projects: {
     title: "Offline LLM on Android: Edge AI",
     tag: "Edge AI",
     description:
-      "On-device LLM inference deploying LFM 2.5 1.2B on Android (Poco X3) via llama.cpp + CMake, fully offline with zero internet dependency. Proves edge-AI viability: a quantized LLM running entirely on consumer mobile hardware with no cloud backend.",
-    technologies: ["llama.cpp", "CMake", "Android", "LFM 2.5 1.2B", "C++"],
+      "On-device LLM inference deploying LFM2.5-1.2B on Android (Poco X3) via llama.cpp + CMake, fully offline with zero internet dependency. Proves edge-AI viability: a quantized LLM running entirely on consumer mobile hardware with no cloud backend.",
+    technologies: ["llama.cpp", "CMake", "Android", "LFM2.5-1.2B", "C++"],
     links: [{ type: "github", url: "https://github.com/Jeevav62/pocketlfm" }],
   },
   {
