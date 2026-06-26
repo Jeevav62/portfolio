@@ -9,6 +9,7 @@ import GitHubSection from "./components/sections/GitHub";
 import Certifications from "./components/sections/Certifications";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/Footer";
+import SectionDivider from "./components/ui/SectionDivider";
 
 export default function Home() {
   return (
@@ -16,12 +17,19 @@ export default function Home() {
       <Navigation />
       <Hero />
       <About />
+      <SectionDivider />
       <Experience />
+      <SectionDivider />
       <Projects />
+      <SectionDivider />
       <TechnicalWriting />
+      <SectionDivider />
       <Skills />
+      <SectionDivider />
       <GitHubSection />
+      <SectionDivider />
       <Certifications />
+      <SectionDivider />
       <Contact />
       <Footer />
     </main>
