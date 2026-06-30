@@ -52,7 +52,7 @@ const articles = [
     title: "I Merged Two AI Voice Models With Math And It Actually Worked",
     excerpt:
       "Task Arithmetic research for TTS, combining fine-tuned female voice and Indian accent Kokoro models in shared weight space without any retraining. Achieved MOS 4.4 and 55% listener preference vs 27% baseline.",
-    url: "https://huggingface.co/jeevav62/models",
+    url: "https://www.f22labs.com/blogs/how-we-merged-two-tts-models-using-task-arithmetic-without-retraining/",
     date: "2026",
     readTime: "10 min read",
     category: "Voice AI Research",
