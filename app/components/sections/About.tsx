@@ -8,7 +8,7 @@ import { MapPin, GraduationCap, Briefcase } from "lucide-react";
 const facts = [
   { icon: MapPin, label: "Location", value: "Chennai, India" },
   { icon: GraduationCap, label: "Education", value: "B.Tech AI & DS" },
-  { icon: Briefcase, label: "Current Role", value: "AI Engineer Intern" },
+  { icon: Briefcase, label: "Current Role", value: "AI/ML Engineer" },
 ];
 
 export default function About() {

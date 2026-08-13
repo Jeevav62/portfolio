@@ -85,7 +85,7 @@ export default function Hero() {
             <span className="gold-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-60" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent)]" />
           </span>
-          Open to AI / ML Engineering roles
+          AI/ML Engineer @ F22 Labs
         </motion.span>
 
         {/* Name: Cormorant Garamond, per-char stagger reveal */}

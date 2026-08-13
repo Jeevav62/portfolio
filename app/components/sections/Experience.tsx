@@ -6,10 +6,25 @@ import SectionHeading from "../ui/SectionHeading";
 const experiences = [
   {
     id: "1",
+    role: "AI/ML Engineer",
+    company: "F22 Labs",
+    location: "Chennai, India",
+    period: "Jul 2026 – Present",
+    description: [
+      "Promoted to full-time AI/ML Engineer after the internship, now owning end-to-end fine-tuning and deployment of production LLM, TTS, and STT systems.",
+      "Run model evaluation and benchmarking on new LLM, TTS, and STT releases, building quick prototypes and POCs to test them before anything goes to production.",
+      "Building internal automation tooling for model evaluation, fine-tuning, and deployment pipelines that cuts down manual POC turnaround time.",
+      "Leading LLM fine-tuning work across multiple base models, iterating on data curation and multi-GPU training workflows served through vLLM.",
+      "Scaling the Hybrid RAG and voice AI agent stack from the internship into production-grade services with monitoring and deployment automation.",
+    ],
+    technologies: ["LLM Fine-tuning", "vLLM", "Model Evaluation", "Benchmarking", "Automation", "MLOps", "Hybrid RAG", "LiveKit"],
+  },
+  {
+    id: "2",
     role: "AI Engineer Intern",
     company: "F22 Labs",
     location: "Chennai, India",
-    period: "Dec 2025 – Present",
+    period: "Dec 2025 – Jul 2026",
     description: [
       "Authored 95+ technical POC research documents; evaluated 20+ TTS/STT/LLM/OCR models contributing to internal TTS Leaderboard.",
       "Fine-tuned 3 production TTS models (Kokoro-82M, XTTS-v2, VoxCPM) reducing WER from 60% to 22% and improving NISQA MOS by 18%.",
@@ -21,7 +36,7 @@ const experiences = [
     technologies: ["vLLM", "LLM Fine-tuning", "TTS/STT", "Hybrid RAG", "GraphRAG", "LiveKit", "Qdrant", "Neo4j"],
   },
   {
-    id: "2",
+    id: "3",
     role: "Data Science Intern",
     company: "Shiash Pvt Ltd",
     location: "Chennai, India",
@@ -34,7 +49,7 @@ const experiences = [
     technologies: ["Python", "Pandas", "NumPy", "scikit-learn", "Flask", "GridSearchCV"],
   },
   {
-    id: "3",
+    id: "4",
     role: "Data Analytics Intern",
     company: "UptoSkills",
     location: "Remote",
@@ -46,7 +61,7 @@ const experiences = [
     technologies: ["Power BI", "Power Query", "Excel", "Data Analytics"],
   },
   {
-    id: "4",
+    id: "5",
     role: "AI/ML Intern",
     company: "Arul Technologies Pvt Ltd",
     location: "Chennai, India",
@@ -66,7 +81,7 @@ export default function Experience() {
         <SectionHeading
           eyebrow="Experience"
           title="Where I've worked"
-          subtitle="Four internships across AI engineering, data science, and analytics."
+          subtitle="From internship to full-time AI/ML Engineer, with stops across data science and analytics."
         />
 
         <div className="relative ml-2 border-l border-[var(--border)] pl-8">
